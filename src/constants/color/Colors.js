@@ -1,0 +1,26 @@
+export default {
+    PrimaryText: "#010A1C",
+    PrimaryBackGround: "#F8F8F8",
+    InputTextBackGround: "#FFFFFF",
+    BackGroundSection: "#125BE4",
+    TextHeader: '#FFFFFF',
+    TextHeaderBlack: '#000000',
+    TextParagraph: '#DFD8CA',
+    Icon: "#125BE4",
+    TextIcon: "#000000",
+
+    TabActive: '#3862F8',
+    IconImage: '#707070',
+    AdditionVacc: "#4B86B4",
+    MustVacc: "#FB2626",
+    SelectedDay: "#E5DEF6",
+    SelectedDayText: "#4B86B4",
+    BodyNotification: "#9E9FA3",
+    backGround: '#f5f5f5',
+    fullBackGround: '#1a1a1a',
+    backGroundBtn: '#ffece7',
+    textColor: '#191919', //1b1b1b
+    textColorBtn: '#c45637',
+    rate: '#ff9e01',
+    borderLine: '#535353',
+};
