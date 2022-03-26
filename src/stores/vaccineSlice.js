@@ -1,13 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios';
 
-// import request from 'request';
 
 export const getVaccineSlice = createAsyncThunk('vaccine/getVaccineSlice', async (_, thunkAPI) => {
-    const res = await axios.get('http://localhost:5000/api/Child',
+    const res = await axios.get('http://10.0.2.2:5000/api/Vaccine',
         {
             headers: {
                 'Content-Type': 'application/json',
+                'Accept': 'application/json',
             }
         });
 

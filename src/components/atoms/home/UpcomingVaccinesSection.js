@@ -1,66 +1,45 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { View, StyleSheet } from 'react-native'
 import HeaderSection from './HeaderSection'
 import CardUpcomingVaccines from './CardUpcomingVaccines'
+import { useDispatch, useSelector } from 'react-redux'
+import { getUpcomingVaccinesSlice } from '../../../stores/upcomingVaccinesSlice'
 
 const UpcomingVaccinesSection = ({ switchTo, navigation }) => {
-    data = [
-        {
-            id: 1,
-            type: 'must',
-            title: 'Vaccine 1',
-            age: '1-2 m',
-            image: "https://images.unsplash.com/photo-1541832039-cab7e4310f28?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-            description: "any description",
-        },
-        {
-            id: 2,
-            type: 'must',
-            title: 'Vaccine 2',
-            age: '3 - 4 years',
-            image: "https://images.unsplash.com/photo-1541832039-cab7e4310f28?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-            description: "any description",
-        },
-        {
-            id: 3,
-            type: 'additional',
-            title: 'Vaccine 3',
-            age: '5 - 6 years',
-            image: "https://images.unsplash.com/photo-1541832039-cab7e4310f28?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-            description: "any description",
-        },
-        {
-            id: 4,
-            type: 'must',
-            title: 'Vaccine 4',
-            age: '7 - 8 years',
-        },
-        {
+    const dispatch = useDispatch();
+    const data = useSelector(state => state.upcomingVaccines.upcomingVaccine)
 
-            id: 5,
-            type: 'additional',
-            title: 'Vaccine 5',
-            age: '9 - 10 years',
-        },
+    const accountChildren = useSelector(state => state.account.account)
 
-    ]
+
+
+    useEffect(() => {
+        if (accountChildren) {
+            dispatch(getUpcomingVaccinesSlice(accountChildren.children[0].childId))
+
+        }
+    }, [dispatch, accountChildren])
+
+
 
     return (
         <View style={styles.upcoming_vaccines}>
-            <HeaderSection content="Upcoming Vaccines" switchTo={switchTo} />
-            {data.map((item, index) => (
+            <HeaderSection content="Vaccines" switchTo={switchTo} />
+            {data ? data.vaccines.map((item) => !item.status ? (
                 <CardUpcomingVaccines
+
                     switchInfo={() => navigation.navigate("Information", {
-                        title: item.title,
-                        image: item.image,
-                        description: item.description
+                        title: item.vaccineName,
+                        image: "https://media.istockphoto.com/photos/abstract-wavy-object-picture-id1198271727?k=20&m=1198271727&s=612x612&w=0&h=DmBeEdGk2bAUp6lt69brvegHGdH-Kd22oeCkESozyhg=",
+                        description: "cscscscscscscacsakcakcsmncjsacvaskcjbln;mknbjghvsanklc;sceugcewk,l;fefkhbfgueqbhmkl,;"
                     })}
-                    key={index}
+                    childId={item.childId}
+                    key={item.vaccineId}
                     typeVaccine={item.type}
-                    titleVaccine={item.title}
-                    ageGroup={item.age}
+                    titleVaccine={item.vaccineName}
+                    ageGroup={item.vaccineAge}
                 />
-            ))}
+            ) : null) : null}
         </View>
     )
 }

@@ -1,12 +1,12 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import Colors from '../../../constants/color/Colors'
-
+import moment from 'moment'
 const IconCard = ({ icon, text_icon, style }) => {
     return (
         <View style={{ ...styles.container_icon, ...style }}>
             {icon}
-            <Text style={styles.text_icon}>{text_icon}</Text>
+            <Text style={styles.text_icon}>{moment(text_icon).format('YYYY/MM/DD')} </Text>
         </View>
     )
 }

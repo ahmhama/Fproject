@@ -64,7 +64,9 @@ const LoginScreen = () => {
                     handleInput={handleChange('email')}
                     handleOnBlur={handleBlur('email')}
                     valueInput={values.email}
-                    placeHolderInput="E-mail" />
+                    placeHolderInput="E-mail" 
+                    secure={false}
+                    />
 
                   {errors.email && touched.email ? <ErrorInput>{errors.email}</ErrorInput> : null}
                 </View>
@@ -76,7 +78,9 @@ const LoginScreen = () => {
                     handleInput={handleChange('password')}
                     handleOnBlur={handleBlur('password')}
                     valueInput={values.password}
-                    placeHolderInput="Password" />
+                    placeHolderInput="Password" 
+                    secure={true}
+                    />
 
                   {errors.password && touched.password ? <ErrorInput>{errors.password}</ErrorInput> : null}
                 </View>

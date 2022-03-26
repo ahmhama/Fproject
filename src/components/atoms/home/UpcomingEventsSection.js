@@ -1,55 +1,59 @@
-import React from 'react'
+import moment from 'moment'
+import React, { useEffect } from 'react'
 import { View, StyleSheet, FlatList } from 'react-native'
 import HeaderSection from './HeaderSection'
 import CardUpcomingEvent from './CardUpcomingEvent'
+import { useDispatch, useSelector } from 'react-redux'
+import { getGlobalTime } from '../../../stores/timeGlobalSlice'
+import { getEventsSlice } from '../../../stores/eventsSlice'
 
 const UpcomingVaccinesSection = ({ swichTo, navigation }) => {
+    const dispatch = useDispatch();
 
-    data = [
-        {
-            id: 1,
-            type: 'must',
-            title: 'Vaccine 1',
-            age: '1 - 2 years',
-            image: "https://images.unsplash.com/photo-1541832039-cab7e4310f28?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-            description: "any description",
-        },
-        {
-            id: 2,
-            type: 'must',
-            title: 'Vaccine 2',
-            age: '3 - 4 years',
-            image: "https://images.unsplash.com/photo-1541832039-cab7e4310f28?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-            description: "any  here",
-        },
-        {
-            id: 3,
-            type: 'additional',
-            title: 'Vaccine 3',
-            age: '5 - 6 years',
-            image: "https://images.unsplash.com/photo-1541832039-cab7e4310f28?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-            description: "any thing ",
-        },
-        {
-            id: 4,
-            type: 'must',
-            title: 'Vaccine 4',
-            age: '7 - 8 years',
-            image: "https://images.unsplash.com/photo-1541882270037-d3cf216b2ca4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-            description: "any thing cscsssc",
-        },
-        {
+    const globalTime = useSelector(state => state.globalTime.time)
+    const eventsData = useSelector(state => state.events.events)
 
-            id: 5,
-            type: 'additional',
-            title: 'Vaccine 5',
-            age: '9 - 10 years',
-            image: "https://images.unsplash.com/photo-1541832039-cab7e4310f28?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-            description: "any thing q",
+    useEffect(() => {
+        dispatch(getGlobalTime())
+    }, [dispatch])
 
-        },
+    useEffect(() => {
+        dispatch(getEventsSlice())
+    }, [dispatch])
 
-    ]
+
+
+    /* -------------------------------------------------------------------------- */
+    /*               function to check if the event is in the future              */
+    /* -------------------------------------------------------------------------- */
+
+    const checkTheDate = (endDate) => {
+        if (!globalTime) {
+            return null
+        }
+        const fromatDate = moment(globalTime.utc_datetime, 'YYYY-MM-DD')
+        const fromatEndDate = moment(endDate, 'YYYY-MM-DD')
+
+        if (!fromatEndDate.isBefore(fromatDate)) {
+            return true
+        }
+        else {
+            return false
+        }
+    }
+
+    /* -------------------------------------------------------------------------- */
+    /*                     get the deffernt between two dates                     */
+    /* -------------------------------------------------------------------------- */
+    const getDifferenceBetweenDates = (firstDate, endDate) => {
+        const fromatDate = moment(firstDate, 'YYYY-MM-DD')
+        const fromatEndDate = moment(endDate, 'YYYY-MM-DD')
+        const diff = fromatEndDate.diff(fromatDate, 'days')
+        return diff
+    }
+
+
+
 
     return (
         <View style={styles.upcoming_vaccines}>
@@ -60,15 +64,18 @@ const UpcomingVaccinesSection = ({ swichTo, navigation }) => {
                 style={styles.flatlist}
                 showsHorizontalScrollIndicator={false}
                 horizontal={true}
-                data={data}
-                renderItem={({ item }) => <CardUpcomingEvent
+                keyExtractor={(item, index) => index.toString()}
+                data={eventsData}
+
+                renderItem={({ item }) => checkTheDate(item.endDate) && <CardUpcomingEvent
                     switchInfo={() => navigation.navigate("Information", {
-                        title: item.title,
+                        title: item.vaccineCampingName,
                         image: item.image,
                         description: item.description
                     })}
+                    eventDuration={getDifferenceBetweenDates(item.startDate, item.endDate)}
                     typeEvent={item.type}
-                    titleEvent={item.title}
+                    titleEvent={item.vaccineCampingName}
                     ageGroup={item.age}
 
                 />

@@ -1,4 +1,4 @@
-import { MaterialIcons, Ionicons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 
 import { StyleSheet, View } from 'react-native';
 import TypeVaccine from '../common/TypeVaccine'

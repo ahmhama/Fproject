@@ -17,6 +17,7 @@ import UpcomingEventsScreen from '../screens/UpcomingEventsScreen';
 import VaccineScreen from '../screens/VaccineScreen';
 import DetailsReports from '../screens/DetailsReports';
 import InformationScreen from '../screens/InformationScreen';
+import ChildInfoScreen from '../screens/ChildInfoScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -89,6 +90,14 @@ const StackNavigate = () => {
                 component={InformationScreen}
                 options={{
                     headerTitle: () => <Text style={{ fontSize: 20, color: Colors.TextHeaderBlack }}>Information</Text>,
+                    headerTitleAlign: 'center',
+                    headerStyle: { backgroundColor: Colors.PrimaryBackGround },
+                }} />
+
+            <Stack.Screen name="ChildInfo"
+                component={ChildInfoScreen}
+                options={{
+                    headerTitle: () => <Text style={{ fontSize: 20, color: Colors.TextHeaderBlack }}>Child Info</Text>,
                     headerTitleAlign: 'center',
                     headerStyle: { backgroundColor: Colors.PrimaryBackGround },
                 }} />

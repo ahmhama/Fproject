@@ -4,7 +4,7 @@ import { StyleSheet, View, TextInput } from 'react-native'
 import Colors from '../../../constants/color/Colors'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-const InputLogin = ({ nameIcon, handleInput, handleOnBlur, valueInput, placeHolderInput }) => {
+const InputLogin = ({ nameIcon, handleInput, handleOnBlur, valueInput, placeHolderInput  ,secure}) => {
     return (
         <View style={styles.container_input}>
             <MaterialCommunityIcons
@@ -26,7 +26,7 @@ const InputLogin = ({ nameIcon, handleInput, handleOnBlur, valueInput, placeHold
                     value={valueInput}
                     placeholder={placeHolderInput}
                     placeholderTextColor={Colors.PrimaryText}
-                    secureTextEntry={true}
+                    secureTextEntry={secure}
 
                 />
             </InsetShadow>

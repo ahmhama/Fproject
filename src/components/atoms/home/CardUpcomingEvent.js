@@ -11,7 +11,7 @@ const CardUpcomingEvent = ({ typeEvent, titleEvent, eventDuration, ageGroup, swi
 
             <TopCardSlice
                 typeEvent={typeEvent.toLowerCase()}
-                eventDuration={eventDuration === 0 ? `today` : `in 1 day`}
+                eventDuration={eventDuration === 0 ? `today` : `in ${eventDuration} day`}
             />
 
             <TitleCard title={titleEvent} />

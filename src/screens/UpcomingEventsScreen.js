@@ -3,31 +3,27 @@ import Timeline from 'react-native-timeline-flatlist'
 import { StyleSheet, Text, View } from 'react-native'
 import Colors from '../constants/color/Colors'
 import Card from '../components/atoms/data/Card'
-
+import { useDispatch, useSelector } from 'react-redux'
+import { getEventsSlice } from '../stores/eventsSlice'
+import { useEffect } from 'react'
+import moment from 'moment'
 
 
 const UpcomingEventsScreen = () => {
-  let data = [
+  const dispatch = useDispatch();
+  const eventsData = useSelector(state => state.events.events)
 
-    [
-      { id: 1, time: '25/02', title: 'Event 1', typeVaccine: "additional", date: "20 / 12 / 2022", location: "A" },
-      { id: 2, time: '25/02', title: 'Event 2', typeVaccine: "additional", date: "21 / 12 / 2022", location: "B" },
-      { id: 3, time: '25/02', title: 'Event 3', typeVaccine: "additional", date: "22 / 12 / 2022", location: "C" },
 
-    ],
-    { id: 4, time: '26/02', title: 'Event 3', typeVaccine: "must", date: "20 / 12 / 2022", location: "C" },
-    { id: 5, time: '27/02', title: 'Event 4', typeVaccine: "must", date: "20 / 12 / 2022", location: "D" },
-    { id: 6, time: '28/02', title: 'Event 5', typeVaccine: "must", date: "20 / 12 / 2022", location: "E" },
-    { id: 7, time: '29/02', title: 'Event 6', typeVaccine: "must", date: "20 / 12 / 2022", location: "F" },
-    { id: 8, time: '30/02', title: 'Event 7', typeVaccine: "must", date: "20 / 12 / 2022", location: "G" },
+  useEffect(() => {
+    dispatch(getEventsSlice())
+  }, [dispatch])
 
-  ]
-  
+
+
   return (
     <View style={styles.screen}  >
-
-      <Timeline
-        data={data}
+      {eventsData ? <Timeline
+        data={eventsData}
         circleSize={14}
         circleColor='#FDCFCF'
         lineColor='#9E9FA3'
@@ -44,20 +40,16 @@ const UpcomingEventsScreen = () => {
           let aaa = Array.isArray(item) ? item.map(item => {
             return (
               <Card
-                title={item.title}
-                typeVaccine={item.typeVaccine}
-                date={item.date}
-                location={item.location}
-                key={item.id}
+                vaccineName={item.vaccineCampingName}
+                type={item.type}
+                dateTime={item.endDate}
               />
             )
           }) : (
             <Card
-              title={item.title}
-              typeVaccine={item.typeVaccine}
-              date={item.date}
-              location={item.location}
-              key={item.id}
+              vaccineName={item.vaccineCampingName}
+              type={item.type}
+              dateTime={item.endDate}
             />
           )
 
@@ -67,14 +59,13 @@ const UpcomingEventsScreen = () => {
           //check if item is arr or obj
           if (item) {
             let aaa = Array.isArray(item) ? item.map((item, i) => {
-              let first = i === 0 ? item.time : null
+              let first = i === 0 ? item.startDate : null
 
               return (
-
                 <Text key={item.id}>{first}</Text>
               )
             }) : (
-              <Text key={item.id}>{item.time}</Text>
+              <Text style={{marginTop:-20}} key={item.id}>{moment(item.startDate).format('MM/DD')}</Text>
             )
 
 
@@ -83,12 +74,10 @@ const UpcomingEventsScreen = () => {
           }
         }
         }
-
-
-
-
         showTime={true}
       />
+
+        : null}
     </View>
   )
 }

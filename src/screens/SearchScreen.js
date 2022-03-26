@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react'
 import SearchBar from '../components/atoms/search/SearchBar';
 import VaccinesList from '../components/atoms/search/VaccinesList';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { ScrollView } from 'react-native-gesture-handler';
+import { useDispatch, useSelector } from 'react-redux';
+import { getVaccineSlice } from '../stores/vaccineSlice';
 const fakeData = [
   {
     id: 1,
@@ -56,16 +57,13 @@ const SearchScreen = () => {
   const [searchPhrase, setSearchPhrase] = useState("");
   const [clicked, setClicked] = useState(false);
 
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     const apiResponse = await fetch(
-  //       "https://my-json-server.typicode.com/kevintomas1995/logRocket_searchBar/languages"
-  //     );
-  //     const data = await apiResponse.json();
-  //     setFakeData(data);
-  //   };
-  //   getData();
-  // }, []);
+  const dispatch = useDispatch();
+  const data = useSelector(state => state.vaccine.vaccine)
+
+  useEffect(() => {
+    dispatch(getVaccineSlice())
+  }, [dispatch])
+
 
   return (
     <SafeAreaView style={styles.root}>
@@ -83,7 +81,7 @@ const SearchScreen = () => {
       }}>
         <VaccinesList
           searchPhrase={searchPhrase}
-          data={fakeData}
+          data={data}
           setClicked={setClicked}
         />
       </View>

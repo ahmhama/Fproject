@@ -1,14 +1,13 @@
-import { MaterialIcons, Ionicons } from '@expo/vector-icons';
 
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import TitleCard from '../common/TitleCard';
 
-const DiseasesCard = ({ title, description, switchInfo }) => {
+const DiseasesCard = ({ name, discription, switchInfo }) => {
     return (
         <TouchableOpacity style={styles.container_card} onPress={switchInfo}>
-            <TitleCard title={title} />
+            <TitleCard title={name} />
             <View style={styles.bottom_card}>
-                <Text>{description}</Text>
+                <Text>{discription}</Text>
             </View>
         </TouchableOpacity>
     )

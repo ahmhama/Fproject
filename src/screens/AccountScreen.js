@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { FlatList, ScrollView, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 
 import BottomSheet from "react-native-gesture-bottom-sheet";
@@ -9,30 +9,30 @@ import UserAccount from '../components/atoms/AccountScreen/UserAccount'
 import ListItem from '../components/atoms/AccountScreen/ListItem'
 
 // import icons 
-import { SimpleLineIcons } from '@expo/vector-icons';
-import { Feather } from '@expo/vector-icons';
-import { Octicons } from '@expo/vector-icons';
-import { MaterialIcons } from '@expo/vector-icons';
+import { SimpleLineIcons, Feather, Octicons, MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { useDispatch, useSelector } from 'react-redux'
+import { getAccountSlice, getChildIndex } from '../stores/accountSlice';
+import { getUpcomingVaccinesSlice } from '../stores/upcomingVaccinesSlice';
 
-const dataChildren = [
-    {
-        id: 1,
-        name: 'Yousef Ahmed',
-    },
-    {
-        id: 2,
-        name: 'Mohamed Ahmed',
-    },
-
-]
 
 const AccountScreen = ({ navigation }) => {
+
+    const dispatch = useDispatch();
+
+    const accountChildren = useSelector(state => state.account.account)
+
+    useEffect(() => {
+        dispatch(getAccountSlice())
+    }, [dispatch])
+
+
+
     const bottomSheet = useRef();
 
     return (
         <View style={styles.container_screen}>
 
-            <UserAccount />
+            <UserAccount name={accountChildren.firstName + " " + accountChildren.lastName} email={accountChildren.email} />
 
             <View style={styles.container_list}>
                 <ListItem
@@ -43,21 +43,27 @@ const AccountScreen = ({ navigation }) => {
                 />
                 <BottomSheet hasDraggableIcon ref={bottomSheet} height={200} draggable={false} >
                     <View style={{ padding: 20 }}>
-                        {/* الداتا اللي هتظهر لما بغير الطفل */}
-                        <FlatList
-                            data={dataChildren}
-                            renderItem={({ item }) => <ScrollView>
+                        {accountChildren ? <FlatList
+                            data={accountChildren.children}
+                            renderItem={({ item, index }) => <ScrollView>
                                 <TouchableOpacity
                                     style={{ flexDirection: "row", alignItems: "center", marginBottom: 6 }}
-                                    onPress={() => console.log("css")}
+                                    onPress={() => {
+                                        dispatch(getChildIndex(index))
+                                        dispatch(getUpcomingVaccinesSlice(item.childId))
+                                        
+                                        bottomSheet.current.close()
+                                        navigation.navigate('HomeTap')
+                                    }}
+
                                 >
                                     <Image source={require('../assets/images/childIcon.png')} style={{ width: 40, height: 38, borderRadius: 50, marginRight: 6 }} />
-                                    <Text style={{ fontSize: 16, marginTop: -2 }}>{item.name}</Text>
+                                    <Text style={{ fontSize: 16, marginTop: -2 }}>{item.childFirstName}</Text>
                                 </TouchableOpacity>
                             </ScrollView>
                             }
-                            keyExtractor={item => item.id}
-                        />
+                            keyExtractor={item => item.childId}
+                        /> : null}
                     </View>
 
                 </BottomSheet>
@@ -74,6 +80,14 @@ const AccountScreen = ({ navigation }) => {
                     title='Calendar'
                     description='Check out our events'
                 />
+                <ListItem
+                    targetNavigate={() => navigation.navigate('ChildInfo')}
+                    icon={<MaterialCommunityIcons name="card-account-details-outline" size={24} color={Colors.Icon} />}
+                    title='Child Info'
+                    description='Check out your child info'
+                    
+                />
+
 
                 <ListItem
                     targetNavigate={() => navigation.navigate('Reports')}

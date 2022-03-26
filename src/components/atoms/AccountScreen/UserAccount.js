@@ -2,7 +2,7 @@ import { Image, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import Colors from '../../../constants/color/Colors'
 
-const UserAccount = () => {
+const UserAccount = ({ name, email }) => {
     return (
         <View style={styles.container_account}>
             <View style={styles.container_image}>
@@ -12,8 +12,8 @@ const UserAccount = () => {
                 />
             </View>
             <View style={styles.container_user}>
-                <Text style={styles.user_name}>Nguyễn Văn A</Text>
-                <Text style={styles.user_email}>Test@gmail.com</Text>
+                <Text style={styles.user_name}>{name}</Text>
+                <Text style={styles.user_email}>{email}</Text>
             </View>
         </View>
     )

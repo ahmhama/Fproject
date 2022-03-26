@@ -1,32 +1,30 @@
-import { FlatList, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { useEffect } from 'react'
+import { FlatList, StyleSheet, View } from 'react-native'
+import { useDispatch, useSelector } from 'react-redux'
 import CardReport from '../components/atoms/reports/CardReport'
 import Colors from '../constants/color/Colors'
+import { getReportSlice } from '../stores/reportsSlice'
 
 const ReportsScreen = ({ navigation }) => {
-  let data = [
-    {
-      id: 1,
-      name: "john",
-      date: "20/02/2022"
-    },
-    {
-      id: 2,
-      name: "ahmed",
-      date: "10/03/2022",
-    },
-    {
-      id: 3,
-      name: "Ali",
-      date: "15/02/2022",
-    }
 
 
-  ]
+  const dispatch = useDispatch();
+  const reportsData = useSelector(state => state.reports.reports)
+
+
+  useEffect(() => {
+    dispatch(getReportSlice())
+  }, [dispatch])
+
+
   return (
     <View style={styles.screen}>
-      <FlatList data={data}
-        renderItem={({ item }) => <CardReport {...item} switchTo={() => navigation.navigate('DetailsReports', { name: item.name })} />}
-      />
+      {reportsData && <FlatList
+        data={reportsData}
+        keyExtractor={(item, index) => index.toString()}
+
+        renderItem={({ item }) => <CardReport {...item} switchTo={() => navigation.navigate('DetailsReports', { name: item.checkResultDescription })} />}
+      />}
 
 
     </View>

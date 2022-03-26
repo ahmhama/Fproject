@@ -4,10 +4,8 @@ import {
     Text,
     View,
     FlatList,
-    SectionList,
-    ScrollView,
+
 } from "react-native";
-import { SafeAreaView } from 'react-native-safe-area-context';
 import Colors from "../../../constants/color/Colors";
 
 import Card from "../data/Card"
@@ -21,7 +19,7 @@ const VaccinesList = ({ searchPhrase, setClicked, data }) => {
             return <View style={{ padding: 2 }}><Card {...item} /></View>
         }
 
-        if (item.title.toUpperCase().includes(searchPhrase.toUpperCase().trim().replace(/\s/g, ""))) {
+        if (item.vaccineName.toUpperCase().includes(searchPhrase.toUpperCase().trim().replace(/\s/g, ""))) {
             return <View style={{ padding: 2 }}><Card {...item} /></View>
         }
 
@@ -34,10 +32,10 @@ const VaccinesList = ({ searchPhrase, setClicked, data }) => {
             }}
         >
             <FlatList
-                ListHeaderComponent={() => <Text style={{ fontSize: 18, color: Colors.TextHeader, marginBottom: 10 }}>Popular Diseases</Text>}
+                ListHeaderComponent={() => <Text style={{ fontSize: 18, color: Colors.PrimaryText, marginBottom: 10 }}>Vaccine</Text>}
                 data={data}
                 renderItem={renderItem}
-                keyExtractor={(item) => item.id}
+                keyExtractor={(item, index) => index.toString()}
             />
         </View>
     );

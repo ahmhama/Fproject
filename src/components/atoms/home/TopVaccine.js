@@ -5,14 +5,15 @@ import AgeGroup from './AgeGroup'
 const TopVaccine = ({ typeVaccine, ageGroup }) => {
     return (
         <View style={styles.top_card}>
-            <View style={typeVaccine === 'must' ? styles.left_top_card : { ...styles.left_top_card, backgroundColor: '#8F9BB1' }}>
+            <View style={typeVaccine === 'Must' ? styles.left_top_card : { ...styles.left_top_card, backgroundColor: '#8F9BB1' }}>
                 <Text style={styles.title_top_card}>{typeVaccine}</Text>
             </View>
 
             <AgeGroup
-                name="baby-face-outline"
-                color={typeVaccine === 'must' ? "#FF2323" : "#8F9BB1"}
-                ageGroup={ageGroup}
+                name="clock-time-four-outline"
+                color={typeVaccine === 'Must' ? "#FF2323" : "#8F9BB1"}
+
+                ageGroup={ageGroup === 0 ? "today" : ageGroup === 1 ? `${ageGroup} day` : `${ageGroup} days`}
             />
 
         </View >

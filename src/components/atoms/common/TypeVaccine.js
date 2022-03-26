@@ -3,7 +3,7 @@ import React from 'react'
 
 const TypeVaccine = ({ typeVaccine }) => {
     return (
-        <Text style={typeVaccine !== "must" ? styles.type_vaccine : styles.must_vaccine}>{typeVaccine}</Text>
+        <Text style={typeVaccine !== "Must" ? styles.type_vaccine : styles.must_vaccine}>{typeVaccine}</Text>
     )
 }
 
@@ -15,11 +15,15 @@ const styles = StyleSheet.create({
         paddingHorizontal: 15,
         paddingVertical: 5,
         borderRadius: 20,
+    
+
+
     },
     must_vaccine: {
         backgroundColor: "#FF2323",
         paddingHorizontal: 15,
         paddingVertical: 5,
         borderRadius: 20,
+
     }
 })
