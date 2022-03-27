@@ -3,17 +3,24 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 import Colors from '../constants/color/Colors';
 
 const InformationScreen = ({ route }) => {
-    const { title, image, description } = route.params;
+    const { title, discription, vaccineName, sideEffect } = route.params;
 
     return (
         <View style={styles.screen}>
 
-            <Image style={styles.pic}
-                source={{ uri: image }}
-            />
+
             <View style={styles.containerInfo}>
                 <Text style={styles.title} >{title}</Text>
-                <Text style={styles.container} > {description} </Text>
+                <Text style={styles.header_sextion}>description</Text>
+
+                <Text style={styles.container} > {discription} </Text>
+
+                <Text style={styles.header_sextion}>vaccineName</Text>
+                <Text style={styles.container} > {vaccineName} </Text>
+
+                <Text style={styles.header_sextion}>sideEffect</Text>
+                <Text style={styles.container} > {sideEffect} </Text>
+
             </View >
         </View>
 
@@ -37,6 +44,15 @@ const styles = StyleSheet.create({
     pic: {
         width: '100%',
         height: 250,
+    },
+    header_sextion: {
+        fontSize: 18,
+        fontWeight: "bold",
+        marginTop: 5,
+        marginBottom: 5,
+    },
+    container: {
+        paddingBottom: 20
     }
 });
 

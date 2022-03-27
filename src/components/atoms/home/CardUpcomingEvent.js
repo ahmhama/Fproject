@@ -4,7 +4,7 @@ import AgeGroup from './AgeGroup';
 import TitleCard from './TitleCard';
 import TopCardSlice from './TopCardSlice';
 
-const CardUpcomingEvent = ({ typeEvent, titleEvent, eventDuration, ageGroup, switchInfo }) => {
+const CardUpcomingEvent = ({ typeEvent, titleEvent, eventDuration, switchInfo }) => {
 
     return (
         <TouchableOpacity style={styles.card_container} onPress={switchInfo}>
@@ -16,11 +16,11 @@ const CardUpcomingEvent = ({ typeEvent, titleEvent, eventDuration, ageGroup, swi
 
             <TitleCard title={titleEvent} />
 
-            <AgeGroup
+            {/* <AgeGroup
                 name="baby-face-outline"
                 color={typeEvent === 'must' ? "#FF2323" : "#8F9BB1"}
                 ageGroup={ageGroup}
-            />
+            /> */}
 
 
         </TouchableOpacity>

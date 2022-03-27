@@ -35,12 +35,12 @@ const AccountScreen = ({ navigation }) => {
             <UserAccount name={accountChildren.firstName + " " + accountChildren.lastName} email={accountChildren.email} />
 
             <View style={styles.container_list}>
-                <ListItem
+                {/* <ListItem
                     targetNavigate={() => navigation.navigate('Data')}
                     icon={<MaterialIcons name="favorite" size={24} color={Colors.Icon} />}
                     title='My Data'
                     description='Check your Data'
-                />
+                /> */}
                 <BottomSheet hasDraggableIcon ref={bottomSheet} height={200} draggable={false} >
                     <View style={{ padding: 20 }}>
                         {accountChildren ? <FlatList

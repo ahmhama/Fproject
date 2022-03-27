@@ -36,6 +36,9 @@ const VaccinesList = ({ searchPhrase, setClicked, data }) => {
                 data={data}
                 renderItem={renderItem}
                 keyExtractor={(item, index) => index.toString()}
+                style={{
+                    marginBottom: 25
+                }}
             />
         </View>
     );

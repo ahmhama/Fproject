@@ -12,6 +12,7 @@ const ReportsScreen = ({ navigation }) => {
   const reportsData = useSelector(state => state.reports.reports)
 
 
+
   useEffect(() => {
     dispatch(getReportSlice())
   }, [dispatch])
@@ -22,8 +23,11 @@ const ReportsScreen = ({ navigation }) => {
       {reportsData && <FlatList
         data={reportsData}
         keyExtractor={(item, index) => index.toString()}
-
-        renderItem={({ item }) => <CardReport {...item} switchTo={() => navigation.navigate('DetailsReports', { name: item.checkResultDescription })} />}
+        renderItem={({ item }) => <CardReport {...item} switchTo={() => navigation.navigate('DetailsReports', {
+          childId: item.childId,
+          date: item.date,
+          checkResultDescription: item.checkResultDescription
+        })} />}
       />}
 
 

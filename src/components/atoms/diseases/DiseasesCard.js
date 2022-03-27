@@ -7,7 +7,7 @@ const DiseasesCard = ({ name, discription, switchInfo }) => {
         <TouchableOpacity style={styles.container_card} onPress={switchInfo}>
             <TitleCard title={name} />
             <View style={styles.bottom_card}>
-                <Text>{discription}</Text>
+                <Text>{discription.length > 45 ? `${discription.substring(0, 45)}...` : discription}</Text>
             </View>
         </TouchableOpacity>
     )

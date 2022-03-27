@@ -81,9 +81,10 @@ const StackNavigate = () => {
             <Stack.Screen name="DetailsReports"
                 component={DetailsReports}
                 options={{
-                    headerTitle: () => <Text style={{ fontSize: 20, color: Colors.TextHeaderBlack }}>Details Report</Text>,
+                    headerTitle: () => <Text style={{ fontSize: 20, color: Colors.TextHeader }}>Details Report</Text>,
                     headerTitleAlign: 'center',
-                    headerStyle: { backgroundColor: Colors.PrimaryBackGround },
+                    headerStyle: { backgroundColor: Colors.BackGroundSection },
+                    headerShadowVisible: false
                 }} />
 
             <Stack.Screen name="Information"
@@ -97,9 +98,13 @@ const StackNavigate = () => {
             <Stack.Screen name="ChildInfo"
                 component={ChildInfoScreen}
                 options={{
-                    headerTitle: () => <Text style={{ fontSize: 20, color: Colors.TextHeaderBlack }}>Child Info</Text>,
+                    headerTitle: () => <Text style={{ fontSize: 20, color: Colors.TextHeader }}>Child Info</Text>,
                     headerTitleAlign: 'center',
-                    headerStyle: { backgroundColor: Colors.PrimaryBackGround },
+                    headerStyle: { backgroundColor: Colors.BackGroundSection },
+                    headerShadowVisible: false,
+
+
+
                 }} />
 
 

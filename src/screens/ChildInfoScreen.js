@@ -16,61 +16,59 @@ const ChildInfoScreen = () => {
         dispatch(getGlobalTime())
     }, [dispatch])
 
-    // data.childBirthDate
-    //globalTime.datetime
+
 
     const getAge = (birthDate, timeNow, unit) => {
         const birth = moment(birthDate).format('YYYY/MM/DD')
         const time = moment(timeNow).format('YYYY/MM/DD')
-        const diff = moment(time).diff(birth, unit)
-
-        return diff
+        const differant = moment(time).diff(birth, unit)
+        return differant
     }
-
-
-
-
-
 
 
 
     return (
         data ? <View style={styles.container_screen} >
-            <View style={styles.container_child_info}>
-                <Text style={styles.name_child} >{data.childFirstName + " " + data.childLastName}</Text>
 
-                <View style={styles.item_row}>
-                    <View style={styles.item_column}>
-                        <Text style={styles.item_header}>Height</Text>
-                        <Text style={styles.item_text}>100m</Text>
-                    </View>
-                    <View style={styles.item_column}>
-                        <Text style={styles.item_header}>Weight</Text>
-                        <Text style={styles.item_text}>1000000k</Text>
-                    </View>
-                    <View style={styles.item_column}>
-                        <Text style={styles.item_header}>Gender</Text>
-                        <Text style={styles.item_text}>{data.childGender}</Text>
-                    </View>
-
-                    <View style={styles.item_column}>
-                        <Text style={styles.item_header}>Age</Text>
-                        <Text style={styles.item_text}>
-                            {globalTime ?
+            {/* {globalTime ?
                                 getAge(data.childBirthDate, globalTime.datetime, 'days') > 360 ? getAge(data.childBirthDate, globalTime.datetime, 'Years') + "Y" + " " + (getAge(data.childBirthDate, globalTime.datetime, 'Months') - (getAge(data.childBirthDate, globalTime.datetime, 'Years') * 12)) + "M"
                                     : getAge(data.childBirthDate, globalTime.datetime, 'days') < 360 ? getAge(data.childBirthDate, globalTime.datetime, 'Months') + " M" + " " + (getAge(data.childBirthDate, globalTime.datetime, 'Days') - (getAge(data.childBirthDate, globalTime.datetime, 'Months') * 30)) + "D"
                                         : getAge(data.childBirthDate, globalTime.datetime, 'days') + " D"
                                 : null
-                            }
+                            } */}
 
-                        </Text>
-
+            <View style={styles.container_carve}>
+                <View style={styles.container_child_info}>
+                    <View style={styles.item_row}>
+                        <Text style={styles.item_header}> Name</Text>
+                        <Text style={styles.item_text}> {data.childFirstName + " " + data.childLastName}</Text>
                     </View>
+
+                    <View style={styles.item_row}>
+                        <Text style={styles.item_header}> Gender</Text>
+                        <Text style={styles.item_text}> {data.childGender}</Text>
+                    </View>
+
+                    <View style={styles.item_row}>
+                        <Text style={styles.item_header}> Date of birth</Text>
+                        <Text style={styles.item_text}>
+                            {moment(data.childBirthDate).format('YYYY/MM/DD')}
+                        </Text>
+                    </View>
+
+                    <View style={styles.item_row}>
+                        <Text style={styles.item_header}> Height</Text>
+                        <Text style={styles.item_text}> {data.height}</Text>
+                    </View>
+
+                    <View style={styles.item_row}>
+                        <Text style={styles.item_header}>Weight</Text>
+                        <Text style={styles.item_text}> {data.weight}</Text>
+                    </View>
+
                 </View>
 
             </View>
-
-
         </View > : null
 
     )
@@ -81,51 +79,41 @@ export default ChildInfoScreen
 const styles = StyleSheet.create({
     container_screen: {
         flex: 1,
-        alignItems: 'center',
         backgroundColor: Colors.PrimaryBackGround,
+    },
+    container_carve: {
+        width: '100%',
+        backgroundColor: Colors.BackGroundSection,
+        borderBottomEndRadius: 130,
+        borderBottomStartRadius: 0,
+        paddingBottom: 55,
     },
     container_child_info: {
         width: '95%',
-        backgroundColor: "#fff",
-        marginHorizontal: 15,
         marginVertical: 10,
-        padding: 15,
-        borderRadius: 10,
-        elevation: 1,
 
-    },
-
-    name_child: {
-        textAlign: 'center',
-        paddingBottom: 15,
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: Colors.PrimaryText
     },
     item_row: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingHorizontal: 20,
-        paddingVertical: 10,
-    },
-    item_column: {
-        justifyContent: 'center',
         alignItems: 'center',
+        marginHorizontal: 20,
+        paddingVertical: 15,
+        borderBottomWidth: 1,
+        borderBottomColor: "#F8F8F8",
     },
     item_header: {
-        fontSize: 16,
-        color: Colors.PrimaryText,
+        fontSize: 20,
+        color: Colors.TextHeader,
         fontWeight: 'bold',
         textAlign: 'center'
 
     },
     item_text: {
-        fontSize: 14,
-        color: Colors.PrimaryText,
+        fontSize: 16,
+        color: "#F8F8F8",
         textAlign: 'center'
 
     }
-
-
 
 })

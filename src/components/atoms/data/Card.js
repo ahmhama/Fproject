@@ -5,14 +5,14 @@ import TypeVaccine from '../common/TypeVaccine'
 import IconCard from '../common/IconCard'
 import TitleCard from '../common/TitleCard'
 
-const Card = ({ vaccineName, dateTime, type }) => {
+const Card = ({ vaccineName, date, type }) => {
     return (
 
         <View style={styles.container_card}>
             <View style={styles.top_card}>
                 <TypeVaccine typeVaccine={type} />
 
-                <IconCard icon={<MaterialIcons name="access-time" size={24} color={type !== "Must" ? "#8F9BB1" : "#FF2323"} />} text_icon={dateTime} />
+                <IconCard icon={<MaterialIcons name="access-time" size={24} color={type.toLowerCase() !== "must" ? "#8F9BB1" : "#FF2323"} />} text_icon={date} />
             </View>
 
             <TitleCard title={vaccineName} />

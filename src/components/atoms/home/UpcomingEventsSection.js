@@ -59,7 +59,7 @@ const UpcomingVaccinesSection = ({ swichTo, navigation }) => {
         <View style={styles.upcoming_vaccines}>
             <HeaderSection content="UpComing Events" switchTo={swichTo} />
 
-            <FlatList
+            {eventsData ? <FlatList
                 nestedScrollEnabled
                 style={styles.flatlist}
                 showsHorizontalScrollIndicator={false}
@@ -76,11 +76,11 @@ const UpcomingVaccinesSection = ({ swichTo, navigation }) => {
                     eventDuration={getDifferenceBetweenDates(item.startDate, item.endDate)}
                     typeEvent={item.type}
                     titleEvent={item.vaccineCampingName}
-                    ageGroup={item.age}
 
                 />
                 }
             />
+                : null}
         </View>
     )
 }
