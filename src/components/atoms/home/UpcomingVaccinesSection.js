@@ -35,10 +35,11 @@ const UpcomingVaccinesSection = ({ switchTo, navigation }) => {
                     return (
                         <CardUpcomingVaccines
 
-                            switchInfo={() => navigation.navigate("Information", {
+                            switchInfo={() => navigation.navigate("InformationVaccine", {
                                 title: vaccine.vaccineName,
-                                image: "https://media.istockphoto.com/photos/abstract-wavy-object-picture-id1198271727?k=20&m=1198271727&s=612x612&w=0&h=DmBeEdGk2bAUp6lt69brvegHGdH-Kd22oeCkESozyhg=",
-                                description: "cscscscscscscacsakcakcsmncjsacvaskcjbln;mknbjghvsanklc;sceugcewk,l;fefkhbfgueqbhmkl,;"
+                                diseasesName: vaccine.diseasesName,
+                                doseRoute: vaccine.doseRoute,
+                                vaccineAge: vaccine.vaccineAge,
                             })}
                             childId={item.childId}
                             key={vaccine.vaccineId}

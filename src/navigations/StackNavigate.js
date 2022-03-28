@@ -18,6 +18,7 @@ import VaccineScreen from '../screens/VaccineScreen';
 import DetailsReports from '../screens/DetailsReports';
 import InformationScreen from '../screens/InformationScreen';
 import ChildInfoScreen from '../screens/ChildInfoScreen';
+import InformationVaccineScreen from '../screens/InformationVaccineScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -102,11 +103,17 @@ const StackNavigate = () => {
                     headerTitleAlign: 'center',
                     headerStyle: { backgroundColor: Colors.BackGroundSection },
                     headerShadowVisible: false,
-
-
-
                 }} />
 
+
+            <Stack.Screen name="InformationVaccine"
+                component={InformationVaccineScreen}
+                options={{
+                    headerTitle: () => <Text style={{ fontSize: 20, color: Colors.TextHeader }}>Information Vaccine</Text>,
+                    headerTitleAlign: 'center',
+                    headerStyle: { backgroundColor: Colors.BackGroundSection },
+                    headerShadowVisible: false,
+                }} />
 
 
 

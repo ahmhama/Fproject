@@ -74,12 +74,12 @@ const AccountScreen = ({ navigation }) => {
                     description='Select Your child'
                 />
 
-                <ListItem
+                {/* <ListItem
                     targetNavigate={() => navigation.navigate('Calendar')}
                     icon={<Octicons name="calendar" size={24} color={Colors.Icon} />}
                     title='Calendar'
                     description='Check out our events'
-                />
+                /> */}
                 <ListItem
                     targetNavigate={() => navigation.navigate('ChildInfo')}
                     icon={<MaterialCommunityIcons name="card-account-details-outline" size={24} color={Colors.Icon} />}

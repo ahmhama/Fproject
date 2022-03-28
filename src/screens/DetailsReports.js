@@ -6,7 +6,7 @@ import { getUpcomingVaccinesSlice } from '../stores/upcomingVaccinesSlice';
 import moment from 'moment'
 
 const DetailsReports = ({ route }) => {
-    const { childId, date, checkResultDescription } = route.params
+    const { childId, date, checkResultDescription, weight, height } = route.params
     const dispatch = useDispatch();
     const data = useSelector(state => state.upcomingVaccines.upcomingVaccine)
 
@@ -30,13 +30,13 @@ const DetailsReports = ({ route }) => {
                     <Text style={{ ...styles.item_header, paddingTop: 15 }}>Height:</Text>
                     <View style={styles.item_row}>
                         <Text style={styles.item_text}>Before: {data.height}</Text>
-                        <Text style={styles.item_text}>After: 222</Text>
+                        <Text style={styles.item_text}>After: {height}</Text>
                     </View>
 
                     <Text style={{ ...styles.item_header, paddingTop: 15 }}>weight:</Text>
                     <View style={styles.item_row}>
                         <Text style={styles.item_text}>Before: {data.weight}</Text>
-                        <Text style={styles.item_text}>After: 222</Text>
+                        <Text style={styles.item_text}>After: {weight}</Text>
                     </View>
 
                 </View>

@@ -18,6 +18,10 @@ const ReportsScreen = ({ navigation }) => {
   }, [dispatch])
 
 
+  if (reportsData) {
+    console.log(reportsData[0].date);
+  }
+
   return (
     <View style={styles.screen}>
       {reportsData && <FlatList
@@ -26,7 +30,9 @@ const ReportsScreen = ({ navigation }) => {
         renderItem={({ item }) => <CardReport {...item} switchTo={() => navigation.navigate('DetailsReports', {
           childId: item.childId,
           date: item.date,
-          checkResultDescription: item.checkResultDescription
+          checkResultDescription: item.checkResultDescription,
+          height : item.height,
+          weight : item.weight
         })} />}
       />}
 
