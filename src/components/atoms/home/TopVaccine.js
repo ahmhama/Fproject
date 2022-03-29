@@ -2,22 +2,23 @@ import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import AgeGroup from './AgeGroup'
 
-const TopVaccine = ({ typeVaccine, ageGroup }) => {
+const TopVaccine = ({ typeVaccine, ageGroup, vaccineAge }) => {
     return (
         <View style={styles.top_card}>
             <View style={typeVaccine.toLowerCase() === 'must' ? styles.left_top_card : { ...styles.left_top_card, backgroundColor: '#8F9BB1' }}>
                 <Text style={styles.title_top_card}>{typeVaccine}</Text>
             </View>
-
             <AgeGroup
-                name="clock-time-four-outline"
-                color={typeVaccine.toLowerCase() === 'must' ? "#FF2323" : "#8F9BB1"}
+                name={vaccineAge * 30 - ageGroup < 34 ? "alert-circle" : "clock-time-four-outline"}
 
-                ageGroup={ageGroup === 0 ? "today" : ageGroup === 1 ? `${ageGroup} day` : `${ageGroup} days`}
+                color={typeVaccine.toLowerCase() === 'must' ? "#FF2323" : "#8F9BB1"}
+                ageGroup={vaccineAge * 30 - ageGroup === 0 ? "today" : vaccineAge * 30 - ageGroup === 1 ? `${vaccineAge * 30 - ageGroup} day` : `${vaccineAge * 30 - ageGroup} days`}
             />
+
 
         </View >
     )
+
 }
 
 const styles = StyleSheet.create({

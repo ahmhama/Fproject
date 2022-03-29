@@ -9,7 +9,7 @@ import { useEffect } from 'react'
 import moment from 'moment'
 
 
-const UpcomingEventsScreen = () => {
+const UpcomingEventsScreen = ({ route }) => {
   const dispatch = useDispatch();
   const eventsData = useSelector(state => state.events.events)
 
@@ -65,7 +65,7 @@ const UpcomingEventsScreen = () => {
                 <Text key={item.id}>{first}</Text>
               )
             }) : (
-              <Text style={{marginTop:-20}} key={item.id}>{moment(item.startDate).format('MM/DD')}</Text>
+              <Text style={{ marginTop: -20 }} key={item.id}>{moment(item.startDate).format('MM/DD')}</Text>
             )
 
 

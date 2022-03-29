@@ -1,4 +1,4 @@
-import { StyleSheet, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, TouchableOpacity, Text } from 'react-native'
 import React from 'react'
 import TitleCard from '../common/TitleCard'
 import IconCard from '../common/IconCard'
@@ -9,9 +9,9 @@ const CardReport = ({ doctor, date, switchTo }) => {
     return (
 
         <TouchableOpacity style={styles.container_card} onPress={switchTo}>
-            <TitleCard title={doctor.firstName + " " + doctor.lastName} />
+            <TitleCard title={doctor.firstName + " " + doctor.lastName} dr="Dr" />
             <IconCard icon={<MaterialIcons name="access-time" size={24} />} text_icon={date} />
-        </TouchableOpacity>
+        </TouchableOpacity >
     )
 }
 

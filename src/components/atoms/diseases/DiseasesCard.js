@@ -5,7 +5,11 @@ import TitleCard from '../common/TitleCard';
 const DiseasesCard = ({ name, discription, switchInfo }) => {
     return (
         <TouchableOpacity style={styles.container_card} onPress={switchInfo}>
-            <TitleCard title={name} />
+            <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center' }}>
+                <TitleCard title={name} />
+                {/* <View style={{ width: 10, height: 10, borderRadius: 10, backgroundColor: 'red' }}></View> */}
+                <View style={{ paddingHorizontal: 10, paddingVertical: 3, borderRadius: 20, backgroundColor: '#FF2323' }}><Text style={{color:"#fff"}}>Alert</Text></View>
+            </View>
             <View style={styles.bottom_card}>
                 <Text>{discription.length > 45 ? `${discription.substring(0, 45)}...` : discription}</Text>
             </View>

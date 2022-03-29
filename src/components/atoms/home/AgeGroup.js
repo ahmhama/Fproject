@@ -8,7 +8,7 @@ const AgeGroup = ({ name, color, ageGroup, style }) => {
             <MaterialCommunityIcons
                 name={name}
                 size={20}
-                color={color}
+                color={name == "alert-circle" ?  '#FF2323'  : { color }}
             />
             <Text style={styles.age}>{ageGroup}</Text>
         </View>

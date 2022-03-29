@@ -9,7 +9,7 @@ import UserAccount from '../components/atoms/AccountScreen/UserAccount'
 import ListItem from '../components/atoms/AccountScreen/ListItem'
 
 // import icons 
-import { SimpleLineIcons, Feather, Octicons, MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { SimpleLineIcons, Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useDispatch, useSelector } from 'react-redux'
 import { getAccountSlice, getChildIndex } from '../stores/accountSlice';
 import { getUpcomingVaccinesSlice } from '../stores/upcomingVaccinesSlice';

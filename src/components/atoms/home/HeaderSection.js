@@ -6,14 +6,14 @@ const HeaderSection = ({ content, switchTo }) => {
     return (
         <View style={styles.container_header}>
             <Text style={styles.header_text}>{content}</Text>
-            <TouchableOpacity style={styles.button_header} onPress={switchTo}>
+            {switchTo && <TouchableOpacity style={styles.button_header} onPress={switchTo}>
                 <Text style={styles.button_text} >View All</Text>
                 <Ionicons
                     name="ios-arrow-forward-sharp"
                     size={16}
                     color="#010A1C"
                 />
-            </TouchableOpacity>
+            </TouchableOpacity>}
         </View>
     )
 }

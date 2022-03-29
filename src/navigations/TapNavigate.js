@@ -14,6 +14,7 @@ import AccountScreen from '../screens/AccountScreen';
 import HomeScreen from '../screens/HomeScreen';
 import UserHeader from '../components/atoms/common/UserHeader';
 import { Image, Text, View } from 'react-native';
+import SelectChildScreen from '../screens/SelectChildScreen';
 
 
 const Tabs = createBottomTabNavigator();
@@ -50,30 +51,37 @@ const StyleHome = {
 }
 
 
-const TabNavigator = () => {
+const TabNavigator = ({ route }) => {
+
     return (
         <Tabs.Navigator TabBarOPtions={TapOptions}>
 
-            <Tabs.Screen name="HomeTap" component={HomeScreen} options={StyleHome} />
+
+            <Tabs.Screen name="HomeTap"
+                component={HomeScreen}
+                options={StyleHome}
+
+            />
 
             <Tabs.Screen name="DiseasesTap" component={DiseasesScreen}
                 options={{
+
                     tabBarShowLabel: false,
                     tabBarIcon: ({ color }) => <Ionicons name="medkit-outline" size={20} color={color} />,
                     headerTitle: () => <Text style={{ fontSize: 20, color: Colors.TextHeaderBlack }}>Diseases</Text>,
                     headerTitleAlign: 'center',
-
                 }}
+
             />
 
-            <Tabs.Screen name="SearchTap" component={SearchScreen}
+            {/* <Tabs.Screen name="SearchTap" component={SearchScreen}
                 options={{
                     tabBarShowLabel: false,
                     tabBarIcon: ({ color }) => <Ionicons name="ios-search-outline" size={20} color={color} />,
                     headerTitle: () => <Text style={{ fontSize: 20, color: Colors.TextHeaderBlack }}>Search</Text>,
                     headerTitleAlign: 'center',
                 }}
-            />
+            /> */}
             {/* <Tabs.Screen name="NotificationTap" component={NotificationScreen}
                 options={{
                     tabBarShowLabel: false,

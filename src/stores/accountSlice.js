@@ -29,7 +29,6 @@ const accountSlice = createSlice({
         getChildIndex: (state, action) => {
             state.childIndex = action.payload;
         },
-
     },
 
 

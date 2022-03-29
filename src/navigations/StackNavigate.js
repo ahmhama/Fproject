@@ -19,19 +19,39 @@ import DetailsReports from '../screens/DetailsReports';
 import InformationScreen from '../screens/InformationScreen';
 import ChildInfoScreen from '../screens/ChildInfoScreen';
 import InformationVaccineScreen from '../screens/InformationVaccineScreen';
+import NextVaccinesScreen from '../screens/NextVaccinesScreen';
+import MissedVaccineScreen from '../screens/MissedVaccineScreen';
+import TakenVaccineScreen from '../screens/TakenVaccineScreen';
+import SelectChildScreen from '../screens/SelectChildScreen';
+import HomeScreen from '../screens/HomeScreen';
 
 
 const Stack = createNativeStackNavigator();
 
-const StackNavigate = () => {
+const StackNavigate = ({ route }) => {
+    console.log(route);
     return (
         <Stack.Navigator>
 
-            <Stack.Screen name="Home"
+
+            <Stack.Screen
+                name='SelectChild'
+                component={SelectChildScreen}
+                initialRouteName='SelectChild'
+                options={{
+                    headerShown: false
+                }}
+            />
+
+            <Stack.Screen
+                name="Home"
                 component={TabNavigator}
                 options={{
                     headerShown: false,
                 }} />
+
+
+
             <Stack.Screen name="Event" component={EventScreen} />
             <Stack.Screen name="Diseases" component={DiseasesScreen} />
             {/* مكان الداتا هنا  */}
@@ -115,12 +135,32 @@ const StackNavigate = () => {
                     headerShadowVisible: false,
                 }} />
 
+            <Stack.Screen name="NextVaccines"
+                component={NextVaccinesScreen}
+                options={{
+                    headerTitle: () => <Text style={{ fontSize: 20, color: Colors.TextHeaderBlack }}>Upcoming Vaccines</Text>,
+                    headerTitleAlign: 'center',
+                }} />
+
+            <Stack.Screen name="MissedVaccine"
+                component={MissedVaccineScreen}
+                options={{
+                    headerTitle: () => <Text style={{ fontSize: 20, color: Colors.TextHeaderBlack }}>Missed Vaccines</Text>,
+                    headerTitleAlign: 'center',
+                }} />
+
+            <Stack.Screen name="TakenVaccine"
+                component={TakenVaccineScreen}
+                options={{
+                    headerTitle: () => <Text style={{ fontSize: 20, color: Colors.TextHeaderBlack }}>Taken Vaccines</Text>,
+                    headerTitleAlign: 'center',
+                }} />
+
 
 
         </Stack.Navigator>
     );
 }
-
 
 const StackAuth = () => {
     return (
@@ -132,6 +172,7 @@ const StackAuth = () => {
                     headerShown: false
                 }}
             />
+
         </Stack.Navigator>
     )
 }
@@ -141,7 +182,6 @@ const MainNavigator = () => {
 
     const { isLoggedIn } = useSelector(state => state.userAuth);
 
-    console.log(isLoggedIn)
     return (
         <NavigationContainer>
             {isLoggedIn ? <StackNavigate /> : <StackAuth />}

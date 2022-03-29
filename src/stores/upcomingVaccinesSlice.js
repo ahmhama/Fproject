@@ -19,7 +19,12 @@ export const getUpcomingVaccinesSlice = createAsyncThunk('upcomingVaccines/getUp
 
 const upcomingVaccinesSlice = createSlice({
     name: 'upcomingVaccines',
-    initialState: { upcomingVaccine: null, loading: false },
+    initialState: { upcomingVaccine: null, loading: false, childId: null },
+    reducers: {
+        setChildId: (state, action) => {
+            state.childId = action.payload;
+        },
+    },
     extraReducers: {
         [getUpcomingVaccinesSlice.pending]: (state, action) => {
             state.loading = true;
@@ -34,6 +39,8 @@ const upcomingVaccinesSlice = createSlice({
         }
     }
 })
+
+export const { setChildId } = upcomingVaccinesSlice.actions
 
 export default upcomingVaccinesSlice.reducer
 

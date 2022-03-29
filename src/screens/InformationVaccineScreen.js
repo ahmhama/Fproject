@@ -8,17 +8,17 @@ const InformationVaccineScreen = ({ route }) => {
         <View style={styles.container_screen} >
             <View style={styles.container_carve}>
                 <View style={styles.containerInfo}>
-                    <Text style={styles.header_section}>Name Vaccine</Text>
+                    <Text style={styles.header_section}>Vaccine Name</Text>
                     <Text style={styles.container} >{title}</Text>
 
 
-                    <Text style={styles.header_section}>diseasesName Name</Text>
+                    <Text style={styles.header_section}>Diseases Name</Text>
                     <Text style={styles.container} > {diseasesName} </Text>
 
                     <Text style={styles.header_section}>Dose Route</Text>
                     <Text style={styles.container} > {doseRoute} </Text>
 
-                    <Text style={styles.header_section}>vaccine Age</Text>
+                    <Text style={styles.header_section}>Vaccine Age</Text>
                     <Text style={styles.container} > {vaccineAge} </Text>
 
                 </View >

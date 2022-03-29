@@ -7,24 +7,25 @@ import { getGlobalTime } from '../../../stores/timeGlobalSlice';
 import moment from 'moment'
 import { getUpcomingVaccinesSlice } from '../../../stores/upcomingVaccinesSlice';
 
-const CardUpcomingVaccines = ({ typeVaccine, titleVaccine, ageGroup, switchInfo, childId }) => {
+const CardUpcomingVaccines = ({ typeVaccine, titleVaccine, switchInfo, childId, vaccineAge }) => {
     let timeDiff
     const dispatch = useDispatch();
 
     const globalTime = useSelector(state => state.globalTime.time)
 
-    const child = useSelector(state => state.account.account)
+    const data = useSelector(state => state.upcomingVaccines.upcomingVaccine)
 
     useEffect(() => {
         dispatch(getGlobalTime())
         getUpcomingVaccinesSlice(childId)
     }, [dispatch])
 
-    if (globalTime && child) {
-        const timeToday = moment(globalTime).format('YYYY-MM-DD')
-        const childBirthDate = moment(child.childBirthDate).format('YYYY-MM-DD')
-        timeDiff = moment(timeToday).diff(moment(childBirthDate), 'days')
+    if (globalTime && data) {
+        const timeToday = moment(globalTime.datetime).format('YYYY-MM-DD')
+        const BirthDate = moment(data.childBirthDate).format('YYYY-MM-DD')
+        timeDiff = moment(timeToday).diff(moment(BirthDate), 'days')
     }
+
 
     return (
         <TouchableOpacity style={styles.card_container} onPress={switchInfo}>
@@ -32,6 +33,7 @@ const CardUpcomingVaccines = ({ typeVaccine, titleVaccine, ageGroup, switchInfo,
                 typeVaccine={typeVaccine}
                 titleVaccine={titleVaccine}
                 ageGroup={timeDiff}
+                vaccineAge={vaccineAge}
             />
             <TitleCard title={titleVaccine} />
         </TouchableOpacity>

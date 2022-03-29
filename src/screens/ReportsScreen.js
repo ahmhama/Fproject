@@ -18,10 +18,6 @@ const ReportsScreen = ({ navigation }) => {
   }, [dispatch])
 
 
-  if (reportsData) {
-    console.log(reportsData[0].date);
-  }
-
   return (
     <View style={styles.screen}>
       {reportsData && <FlatList

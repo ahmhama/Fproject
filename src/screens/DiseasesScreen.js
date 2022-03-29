@@ -4,22 +4,47 @@ import { ScrollView } from 'react-native-gesture-handler'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getDiseasesSlice } from '../stores/diseasesSlice'
+import { getReportSlice } from '../stores/reportsSlice'
 
 const DiseasesScreen = ({ navigation }) => {
 
   const dispatch = useDispatch();
-  const data = useSelector(state => state.diseases.diseases)
-
+  const reportsData = useSelector(state => state.reports.reports)
+  const child = useSelector(state => state.upcomingVaccines.upcomingVaccine)
 
   useEffect(() => {
+    dispatch(getReportSlice())
     dispatch(getDiseasesSlice())
   }, [dispatch])
 
 
   return (
     <ScrollView style={styles.container_screen}>
+      {
+        reportsData && child ? reportsData.map(item => {
+          if (item.childId === child.childId && item.status === true) {
+            return (
+              <DiseasesCard
+                key={item.diseasesId}
+                name={item.diseases.name}
+                discription={item.diseases.discription}
+                switchInfo={() => navigation.navigate("Information", {
+                  title: item.diseases.name,
+                  discription: item.diseases.discription,
+                  doctorName: item.doctor.firstName + " " + item.doctor.lastName,
+                  date: item.date,
 
-      {data && data.map((item) => <DiseasesCard
+                  // vaccineName: item.vaccineName,
+                  // sideEffect: item.sideEffect
+                })}
+              />
+            )
+          }
+        }) : null
+
+      }
+
+      {/* {data && data.map((item) => <DiseasesCard
         key={item.diseaseId}
         {...item}
         switchInfo={() => navigation.navigate("Information", {
@@ -27,7 +52,7 @@ const DiseasesScreen = ({ navigation }) => {
           discription: item.discription,
           vaccineName: item.vaccineName,
           sideEffect: item.sideEffect
-        })} />)}
+        })} />)} */}
 
     </ScrollView>
   )

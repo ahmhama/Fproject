@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import Colors from '../constants/color/Colors';
-
+import moment from 'moment';
 const InformationScreen = ({ route }) => {
-    const { title, discription, vaccineName, sideEffect } = route.params;
+    const { title, discription, doctorName, date } = route.params;
 
     return (
 
@@ -11,16 +11,21 @@ const InformationScreen = ({ route }) => {
             <View style={styles.container_carve}>
 
                 <View style={styles.containerInfo}>
-                    <Text style={styles.title} >{title}</Text>
+                    <Text style={styles.header_sextion} >
+                        This child was checked by
+                        <Text style={styles.title} > Dr.{doctorName} </Text>
+                        on <Text style={styles.title} > {moment(date).format('YYYY/MM/DD')} </Text>
+                        and found that child has this  <Text style={styles.title} > {title} </Text>disease </Text>
+
                     <Text style={styles.header_sextion}>Description</Text>
 
-                    <Text style={styles.container} > {discription} </Text>
+                    <Text style={styles.container} >{discription} </Text>
 
-                    <Text style={styles.header_sextion}>Vaccine Name</Text>
+                    {/* <Text style={styles.header_sextion}>Vaccine Name</Text>
                     <Text style={styles.container} > {vaccineName} </Text>
 
                     <Text style={styles.header_sextion}>Side Effect</Text>
-                    <Text style={styles.container} > {sideEffect} </Text>
+                    <Text style={styles.container} > {sideEffect} </Text> */}
 
                 </View >
 
