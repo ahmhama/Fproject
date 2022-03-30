@@ -2,13 +2,13 @@ import { StyleSheet, FlatList, View } from 'react-native'
 import React from 'react'
 import Card from '../components/atoms/data/Card';
 
-const MissedVaccineScreen = ({ route, navigation }) => {
+const MissedVaccineScreen = ({ route }) => {
     const { data, vaccineData } = route.params;
 
     return (
         <View style={styles.screen}>
             {
-                data && <FlatList data={data.childVaccines} renderItem={({ item }) => item.isMissed && item.status ?
+                data && <FlatList data={data.childVaccines} renderItem={({ item }) => item.isMissed && !item.status ?
 
                     vaccineData.map((vaccine) => {
                         if (item.vaccineId === vaccine.vaccineId) {

@@ -82,7 +82,7 @@ const TabNavigator = ({ route }) => {
                     headerTitleAlign: 'center',
                 }}
             /> */}
-            {/* <Tabs.Screen name="NotificationTap" component={NotificationScreen}
+            <Tabs.Screen name="NotificationTap" component={NotificationScreen}
                 options={{
                     tabBarShowLabel: false,
                     tabBarIcon: ({ color }) => <Ionicons name="notifications-outline" size={20} color={color} />,
@@ -91,7 +91,7 @@ const TabNavigator = ({ route }) => {
                     headerTintColor: "#000",
                     headerStyle: { backgroundColor: "#F8F8F8" },
                 }}
-            /> */}
+            />
 
             <Tabs.Screen name="AccountTap" component={AccountScreen}
                 options={{

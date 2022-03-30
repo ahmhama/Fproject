@@ -1,14 +1,38 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, View, ScrollView } from 'react-native'
 import React from 'react'
 import CardUpcomingVaccines from '../components/atoms/home/CardUpcomingVaccines';
 
 const NextVaccinesScreen = ({ route, navigation }) => {
     const { data, vaccineData } = route.params;
 
+    let nextVacc = vaccineData.filter((vaccine) => !data.childVaccines.find(item => vaccine.vaccineId === item.vaccineId))
 
     return (
-        <View style={styles.screen}>
-            {data ? data.childVaccines.map((item) => !item.status && !item.isMissed ? vaccineData.map((vaccine) => {
+        <ScrollView>
+            <View style={styles.screen}>
+                {
+                    nextVacc.map((vaccine) => {
+                        return (
+                            <CardUpcomingVaccines
+                                switchInfo={() => navigation.navigate("InformationVaccine", {
+                                    title: vaccine.vaccineName,
+                                    diseasesName: vaccine.diseasesName,
+                                    doseRoute: vaccine.doseRoute,
+                                    vaccineAge: vaccine.vaccineAge,
+
+                                })}
+                                childId={data.childId}
+                                key={vaccine.vaccineId}
+                                typeVaccine={vaccine.type}
+                                titleVaccine={vaccine.vaccineName}
+                                vaccineAge={vaccine.vaccineAge}
+                            />
+                        )
+                    })
+                }
+
+                {/* {data && vaccineData ? data.childVaccines.map((item) => !item.status && !item.isMissed ? vaccineData.map((vaccine) => {
+
                 if (item.vaccineId === vaccine.vaccineId) {
                     return (
                         <CardUpcomingVaccines
@@ -32,8 +56,9 @@ const NextVaccinesScreen = ({ route, navigation }) => {
 
                 : null)
                 : null
-            }
-        </View>
+            } */}
+            </View>
+        </ScrollView>
     )
 }
 

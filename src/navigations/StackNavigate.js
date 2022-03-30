@@ -28,8 +28,7 @@ import HomeScreen from '../screens/HomeScreen';
 
 const Stack = createNativeStackNavigator();
 
-const StackNavigate = ({ route }) => {
-    console.log(route);
+const StackNavigate = () => {
     return (
         <Stack.Navigator>
 

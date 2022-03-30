@@ -6,11 +6,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getUpcomingVaccinesSlice } from '../../../stores/upcomingVaccinesSlice'
 import { getVaccineSlice } from '../../../stores/vaccineSlice'
 import Colors from '../../../constants/color/Colors'
+import moment from 'moment'
 
 const UpcomingVaccinesSection = ({ switchTo, navigation, childId }) => {
     let NoMissed = []
     let NoTaken = []
     let NextVaccine = []
+    let timeDiff
+    let check = []
 
 
     const dispatch = useDispatch();
@@ -19,16 +22,16 @@ const UpcomingVaccinesSection = ({ switchTo, navigation, childId }) => {
 
     const vaccineData = useSelector(state => state.vaccine.vaccine)
 
-    // const accountChildren = useSelector(state => state.account.account)
+    const globalTime = useSelector(state => state.globalTime.time)
+
 
     useEffect(() => {
         dispatch(getUpcomingVaccinesSlice(childId))
         dispatch(getVaccineSlice())
     }, [dispatch])
-    // accountChildren
 
     //no length of data isMissed
-    if (data && vaccineData) {
+    if (data && vaccineData && globalTime) {
         data.childVaccines.map((item) => {
             if (item.isMissed) {
                 vaccineData.map((vaccine) => {
@@ -45,29 +48,41 @@ const UpcomingVaccinesSection = ({ switchTo, navigation, childId }) => {
                 vaccineData.map((vaccine) => {
                     if (item.vaccineId === vaccine.vaccineId) {
                         NoTaken.push(item)
+
                     }
                 })
             }
         })
 
-        data.childVaccines.map((item) => {
-            if (!item.isMissed && !item.status) {
-                vaccineData.map((vaccine) => {
-                    if (item.vaccineId === vaccine.vaccineId) {
-                        NextVaccine.push(item)
-                    }
-                })
-            }
-        })
+
+        // nextVacc.map((item) => {
+        //     if (!item.isMissed && !item.status) {
+        //         vaccineData.map((vaccine) => {
+        //             if (item.vaccineId === vaccine.vaccineId) {
+        //                 NextVaccine.push(item)
+        //                 const timeToday = moment(globalTime.datetime).format('YYYY-MM-DD')
+        //                 const BirthDate = moment(data.childBirthDate).format('YYYY-MM-DD')
+        //                 timeDiff = moment(timeToday).diff(moment(BirthDate), 'days')
+        //             }
+        //         })
+        //     }
+        // })
+        NextVaccine = vaccineData.filter((vaccine) => !data.childVaccines.find(item => vaccine.vaccineId === item.vaccineId))
+        const timeToday = moment(globalTime.datetime).format('YYYY-MM-DD')
+        const BirthDate = moment(data.childBirthDate).format('YYYY-MM-DD')
+        timeDiff = moment(timeToday).diff(moment(BirthDate), 'days')
+
     }
+
 
     return (
         <View style={styles.upcoming_vaccines}>
             <HeaderSection content="Vaccines" />
 
-            <View style={styles.container_btn}>
+            {data && vaccineData ? <View style={styles.container_btn}>
                 <TouchableOpacity
-                    style={styles.btn_vaccines}
+                    style={NextVaccine.length !== 0 ? (NextVaccine[0].vaccineAge * 30) - timeDiff < 32 ? styles.btn_vaccines_acctive : styles.btn_vaccines : styles.btn_vaccines_acctive}
+                    // style={styles.btn_vaccines}
                     onPress={() => {
                         navigation.navigate('NextVaccines', {
                             data: data,
@@ -110,7 +125,7 @@ const UpcomingVaccinesSection = ({ switchTo, navigation, childId }) => {
                 </TouchableOpacity>
 
             </View>
-
+                : null}
             {/* {data ? data.childVaccines.map((item) => !item.status && !item.isMissed ? vaccineData.map((vaccine) => {
                 if (item.vaccineId === vaccine.vaccineId) {
                     return (
@@ -148,6 +163,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+
     btn_vaccines: {
         flexDirection: 'row',
         justifyContent: "space-between",
@@ -161,8 +177,22 @@ const styles = StyleSheet.create({
         paddingHorizontal: 15,
         borderRadius: 10,
         elevation: 4,
-
     },
+    btn_vaccines_acctive: {
+        flexDirection: 'row',
+        justifyContent: "space-between",
+        alignItems: 'center',
+        backgroundColor: "#85EA2D",
+        padding: 10,
+        borderRadius: 10,
+        width: '100%',
+        paddingVertical: 25,
+        marginVertical: 10,
+        paddingHorizontal: 15,
+        borderRadius: 10,
+        elevation: 4,
+    },
+
     text_vaccines: {
         fontSize: 20,
         color: Colors.TextHeaderBlack,
