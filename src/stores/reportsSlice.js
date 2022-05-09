@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 export const getReportSlice = createAsyncThunk('reports/getReportSlice', async (_, thunkAPI) => {
-    const res = await axios.get('http://10.0.2.2:5000/api/Report',
+    const res = await axios.get('http://10.0.2.2:5000/Home/Report/GetReports',
         {
             headers: {
                 'Content-Type': 'application/json',

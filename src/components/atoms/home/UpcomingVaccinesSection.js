@@ -13,8 +13,6 @@ const UpcomingVaccinesSection = ({ switchTo, navigation, childId }) => {
     let NoTaken = []
     let NextVaccine = []
     let timeDiff
-    let check = []
-
 
     const dispatch = useDispatch();
 
@@ -33,7 +31,7 @@ const UpcomingVaccinesSection = ({ switchTo, navigation, childId }) => {
     //no length of data isMissed
     if (data && vaccineData && globalTime) {
         data.childVaccines.map((item) => {
-            if (item.isMissed) {
+            if (item.isMissed ) {
                 vaccineData.map((vaccine) => {
                     if (item.vaccineId === vaccine.vaccineId) {
                         NoMissed.push(item)
@@ -67,11 +65,10 @@ const UpcomingVaccinesSection = ({ switchTo, navigation, childId }) => {
         //         })
         //     }
         // })
-        NextVaccine = vaccineData.filter((vaccine) => !data.childVaccines.find(item => vaccine.vaccineId === item.vaccineId))
+        NextVaccine = vaccineData.filter((vaccine) => !data.childVaccines.find(item => vaccine.vaccineId === item.vaccineId ))
         const timeToday = moment(globalTime.datetime).format('YYYY-MM-DD')
         const BirthDate = moment(data.childBirthDate).format('YYYY-MM-DD')
         timeDiff = moment(timeToday).diff(moment(BirthDate), 'days')
-
     }
 
 
@@ -80,13 +77,13 @@ const UpcomingVaccinesSection = ({ switchTo, navigation, childId }) => {
             <HeaderSection content="Vaccines" />
 
             {data && vaccineData ? <View style={styles.container_btn}>
+
                 <TouchableOpacity
-                    style={NextVaccine.length !== 0 ? (NextVaccine[0].vaccineAge * 30) - timeDiff < 32 ? styles.btn_vaccines_acctive : styles.btn_vaccines : styles.btn_vaccines_acctive}
-                    // style={styles.btn_vaccines}
+                    style={NextVaccine.length !== 0 ? (NextVaccine[0].vaccineAge * 30) - timeDiff < 55 ? styles.btn_vaccines_acctive : styles.btn_vaccines : styles.btn_vaccines_acctive}
                     onPress={() => {
                         navigation.navigate('NextVaccines', {
                             data: data,
-                            vaccineData: vaccineData
+                            vaccineData: vaccineData,
                         })
                     }}
                 >

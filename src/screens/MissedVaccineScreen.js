@@ -19,11 +19,11 @@ const MissedVaccineScreen = ({ route }) => {
                     })
 
                     : null}
-                    keyExtractor={item => item.vaccineId}
+                    keyExtractor={(item, index) => index.toString()}
                     showsVerticalScrollIndicator={false}
                     style={{ flex: 1, paddingBottom: 10, paddingTop: 10 }}
                 />
-                
+
             }
         </View>
     )

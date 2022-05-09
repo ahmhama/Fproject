@@ -9,7 +9,7 @@ const DetailsReports = ({ route }) => {
     const { childId, date, checkResultDescription, weight, height } = route.params
     const dispatch = useDispatch();
     const data = useSelector(state => state.upcomingVaccines.upcomingVaccine)
-
+    
     useEffect(() => {
         dispatch(getUpcomingVaccinesSlice(childId))
     }, [dispatch])

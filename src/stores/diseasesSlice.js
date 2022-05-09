@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 export const getDiseasesSlice = createAsyncThunk('diseases/getDiseasesSlice', async (_, thunkAPI) => {
-    const res = await axios.get('http://10.0.2.2:5000/api/Diseases',
+    const res = await axios.get('http://10.0.2.2:5000/Home/Diseases/All',
         {
             headers: {
                 'Content-Type': 'application/json',

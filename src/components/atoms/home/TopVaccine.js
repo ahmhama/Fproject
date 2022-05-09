@@ -9,7 +9,7 @@ const TopVaccine = ({ typeVaccine, ageGroup, vaccineAge }) => {
                 <Text style={styles.title_top_card}>{typeVaccine}</Text>
             </View>
             <AgeGroup
-                name={vaccineAge * 30 - ageGroup < 32 ? "alert-circle" : "clock-time-four-outline"}
+                name={vaccineAge * 30 - ageGroup < 55 ? "alert-circle" : "clock-time-four-outline"}
 
                 color={typeVaccine.toLowerCase() === 'must' ? "#FF2323" : "#8F9BB1"}
                 ageGroup={vaccineAge * 30 - ageGroup === 0 ? "today" : vaccineAge * 30 - ageGroup === 1 ? `${vaccineAge * 30 - ageGroup} day` : `${vaccineAge * 30 - ageGroup} days`}

@@ -57,7 +57,7 @@ const UpcomingVaccinesSection = ({ swichTo, navigation }) => {
 
     return (
         <View style={styles.upcoming_vaccines}>
-            <HeaderSection content="UpComing Events" switchTo={swichTo} />
+            <HeaderSection content="Campaigns" switchTo={swichTo} />
 
             {eventsData ? <FlatList
                 nestedScrollEnabled

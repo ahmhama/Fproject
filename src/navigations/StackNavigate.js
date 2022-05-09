@@ -84,7 +84,7 @@ const StackNavigate = () => {
             <Stack.Screen name="UpcomingEvents"
                 component={UpcomingEventsScreen}
                 options={{
-                    headerTitle: () => <Text style={{ fontSize: 20, color: Colors.TextHeaderBlack }}>Upcoming Events</Text>,
+                    headerTitle: () => <Text style={{ fontSize: 20, color: Colors.TextHeaderBlack }}>Campaigns</Text>,
 
                     headerTitleAlign: 'center',
                     headerStyle: { backgroundColor: Colors.PrimaryBackGround },

@@ -3,14 +3,28 @@ import React from 'react'
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setSignIn } from '../../../stores/authSlice';
+import axios from 'axios';
+import { getAccountSlice } from '../../../stores/accountSlice';
 
 
-const BtnLogin = ({ onHandleBtn }) => {
+const BtnLogin = ({ onHandleBtn, values }) => {
     const { isLoggedIn } = useSelector(state => state.userAuth);
     const dispatch = useDispatch()
     return (
-        <TouchableOpacity style={styles.btn_login} onPress={() => dispatch(setSignIn({ isLoggedIn: true }))
-        }>
+        // () => dispatch(setSignIn({ isLoggedIn: true })) 
+        <TouchableOpacity style={styles.btn_login} onPress={() => {
+
+            const res = axios.get('http://10.0.2.2:5000/Home/Parents/All')
+            res.then(data => {
+                const check = data.data.filter(item => {
+                    if (item.email.toLowerCase() === values.email.toLowerCase() && item.password.toLowerCase() === values.password.toLowerCase()) {
+                        dispatch(getAccountSlice(item.relativeId))
+                        dispatch(setSignIn({ isLoggedIn: true }))
+                    }
+                })
+            })
+
+        }}>
             <Text style={styles.btn_login_text}>Log In</Text>
         </TouchableOpacity >
 

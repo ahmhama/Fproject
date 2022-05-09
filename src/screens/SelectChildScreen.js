@@ -29,7 +29,7 @@ const SelectChildScreen = ({ navigation }) => {
                                 dispatch(getUpcomingVaccinesSlice(item.childId))
                             }}
                         >
-                            <Text style={styles.text}>{item.childFirstName}</Text>
+                            <Text style={styles.text}>{item.childFirstName + " " + item.childMiniName + " " + item.childLastName}</Text>
                         </TouchableOpacity>
                     )
                 }

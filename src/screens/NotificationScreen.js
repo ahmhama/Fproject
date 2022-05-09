@@ -1,10 +1,7 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native'
-import React, { useEffect } from 'react'
-import NotificationCard from '../components/atoms/notifications/NotificationCard'
+import { StyleSheet, View } from 'react-native'
+import React from 'react'
 import Colors from '../constants/color/Colors'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUpcomingVaccinesSlice } from '../stores/upcomingVaccinesSlice'
-import { getVaccineSlice } from '../stores/vaccineSlice'
 import moment from 'moment'
 import CardUpcomingVaccines from '../components/atoms/home/CardUpcomingVaccines'
 // const fakeData = [

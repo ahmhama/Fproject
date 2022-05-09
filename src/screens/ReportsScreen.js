@@ -7,29 +7,26 @@ import { getReportSlice } from '../stores/reportsSlice'
 
 const ReportsScreen = ({ navigation }) => {
 
-
   const dispatch = useDispatch();
   const reportsData = useSelector(state => state.reports.reports)
-
-
+  const data = useSelector(state => state.upcomingVaccines.upcomingVaccine)
 
   useEffect(() => {
     dispatch(getReportSlice())
   }, [dispatch])
-
 
   return (
     <View style={styles.screen}>
       {reportsData && <FlatList
         data={reportsData}
         keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item }) => <CardReport {...item} switchTo={() => navigation.navigate('DetailsReports', {
+        renderItem={({ item }) => data.childId == item.childId ? <CardReport {...item} switchTo={() => navigation.navigate('DetailsReports', {
           childId: item.childId,
           date: item.date,
           checkResultDescription: item.checkResultDescription,
-          height : item.height,
-          weight : item.weight
-        })} />}
+          height: item.height,
+          weight: item.weight
+        })} /> : null}
       />}
 
 
