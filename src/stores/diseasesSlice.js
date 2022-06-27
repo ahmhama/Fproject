@@ -8,6 +8,8 @@ export const getDiseasesSlice = createAsyncThunk('diseases/getDiseasesSlice', as
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
+                // 'Authorization': `Bearer ${thunkAPI.getState().userAuth.token}` 
+
             }
         });
 

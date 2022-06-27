@@ -16,8 +16,7 @@ const UpcomingEventsScreen = ({ route }) => {
 
   useEffect(() => {
     dispatch(getEventsSlice())
-  }, [dispatch])
-
+  }, [dispatch, eventsData])
 
 
   return (
@@ -38,27 +37,29 @@ const UpcomingEventsScreen = ({ route }) => {
         renderDetail={item => {
           //check if item is arr or obj
           let aaa = Array.isArray(item) ? item.map(item => {
+
             return (
               <Card
                 vaccineName={item.vaccineCampingName}
-                type={item.type}
-                dateTime={item.endDate}
+                // type={item.type}
+                date={moment(item.endDate).format('YYYY/MM/DD')}
               />
             )
           }) : (
             <Card
               vaccineName={item.vaccineCampingName}
-              type={item.type}
-              dateTime={item.endDate}
+              // type={item.type}
+              date={moment(item.endDate).format('YYYY/MM/DD')}
             />
           )
 
           return aaa
         }}
         renderTime={item => {
-          //check if item is arr or obj
+
           if (item) {
             let aaa = Array.isArray(item) ? item.map((item, i) => {
+
               let first = i === 0 ? item.startDate : null
 
               return (

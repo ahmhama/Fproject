@@ -1,30 +1,23 @@
-import { StyleSheet, FlatList, View } from 'react-native'
+import { ScrollView, StyleSheet, View } from 'react-native'
 import React from 'react'
 import Card from '../components/atoms/data/Card';
 
 const MissedVaccineScreen = ({ route }) => {
-    const { data, vaccineData } = route.params;
-
+    const { VaccineMissed } = route.params;
     return (
         <View style={styles.screen}>
-            {
-                data && <FlatList data={data.childVaccines} renderItem={({ item }) => item.isMissed && !item.status ?
+            <ScrollView showsVerticalScrollIndicator={false}>
+                {
 
-                    vaccineData.map((vaccine) => {
-                        if (item.vaccineId === vaccine.vaccineId) {
-                            return (
-                                <Card key={item.vaccineId} {...vaccine} {...item} />
-                            )
-                        }
+                    VaccineMissed && VaccineMissed.map((vaccine) => {
+                        return (
+                            <Card key={vaccine.vaccineId} {...vaccine} />
+                        )
                     })
 
-                    : null}
-                    keyExtractor={(item, index) => index.toString()}
-                    showsVerticalScrollIndicator={false}
-                    style={{ flex: 1, paddingBottom: 10, paddingTop: 10 }}
-                />
 
-            }
+                }
+            </ScrollView>
         </View>
     )
 }

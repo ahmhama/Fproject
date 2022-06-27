@@ -1,29 +1,31 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import Colors from '../constants/color/Colors'
-const InformationVaccineScreen = ({ route }) => {
+import moment from 'moment'
 
-    const { title, doseRoute, vaccineAge } = route.params;
+const EventInfoScreen = ({ route, navigation }) => {
+    const { title, description } = route.params
+
     return (
         <View style={styles.container_screen} >
             <View style={styles.container_carve}>
+
                 <View style={styles.containerInfo}>
-                    <Text style={styles.header_section}>Vaccine Name</Text>
+                    <Text style={styles.header_sextion}>Event</Text>
                     <Text style={styles.container} >{title}</Text>
 
-                    <Text style={styles.header_section}>Dose Route</Text>
-                    <Text style={styles.container} > {doseRoute} </Text>
+                    <Text style={styles.header_sextion}>Description</Text>
 
-                    <Text style={styles.header_section}>Vaccine Age</Text>
-                    <Text style={styles.container} > {vaccineAge} month </Text>
+                    <Text style={styles.container} >{description} </Text>
 
                 </View >
+
             </View>
-        </View>
+        </View >
     )
 }
 
-export default InformationVaccineScreen
+export default EventInfoScreen
 
 const styles = StyleSheet.create({
     container_screen: {
@@ -40,7 +42,14 @@ const styles = StyleSheet.create({
         paddingTop: 20
     },
 
-    header_section: {
+
+    title: {
+        fontSize: 22,
+        fontWeight: "bold",
+        color: Colors.TextHeader,
+    },
+
+    header_sextion: {
         fontSize: 18,
         fontWeight: "bold",
         marginTop: 5,
@@ -51,4 +60,5 @@ const styles = StyleSheet.create({
         paddingBottom: 20,
         color: Colors.TextHeader
     }
+
 })

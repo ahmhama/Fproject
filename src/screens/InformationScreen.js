@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import Colors from '../constants/color/Colors';
 import moment from 'moment';
+import { useDispatch, useSelector } from 'react-redux';
+import { getHealthOfficeSlice } from '../stores/healthOfficeIdSlice';
 const InformationScreen = ({ route }) => {
-    const { title, discription, doctorName, date } = route.params;
+    const { title, discription, doctorName, date, healthoffice } = route.params;
 
     return (
 
@@ -14,8 +16,8 @@ const InformationScreen = ({ route }) => {
                     <Text style={styles.header_sextion} >
                         This child was checked by
                         <Text style={styles.title} > Dr.{doctorName} </Text>
-                        on <Text style={styles.title} > {moment(date).format('YYYY/MM/DD')} </Text>
-                        and found that child has this  <Text style={styles.title} > {title} </Text>disease </Text>
+                        on <Text style={styles.title} > {moment(date).format('YYYY/MM/DD')} in </Text><Text style={styles.title}>{healthoffice} </Text>
+                        and found that child has this  <Text style={styles.title} > {title} </Text>disease  </Text>
 
                     <Text style={styles.header_sextion}>Description</Text>
 

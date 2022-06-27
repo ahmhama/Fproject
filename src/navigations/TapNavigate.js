@@ -15,9 +15,13 @@ import HomeScreen from '../screens/HomeScreen';
 import UserHeader from '../components/atoms/common/UserHeader';
 import { Image, Text, View } from 'react-native';
 import SelectChildScreen from '../screens/SelectChildScreen';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import UserStatus from '../components/atoms/common/UserStatus';
 
 
 const Tabs = createBottomTabNavigator();
+
 
 //Tap For All Screens
 const TapOptions = {
@@ -34,18 +38,23 @@ const StyleHome = {
         <UserHeader />
     ),
     headerRight: () => (
-        <View style={{ marginRight: 10, marginBottom: 10 }}>
-            <Image source={require('../assets/images/logo.png')}
-                style={{ width: 55, height: 55 }}
-            />
-        </View>
+        <UserStatus />
+        // <View style={{ marginRight: 10 }}>
+        //     {/* <Image
+        //         source={require('../assets/images/logo.png')}
+        //         style={{ width: 40, height: 40, resizeMode: 'contain' }}
+        //     /> */}
+
+        // </View>
     ),
     headerTitle: () => null,
     tabBarIcon: ({ color }) => <Ionicons name="home-outline" size={20} color={color} />,
     headerStyle: {
-        backgroundColor: Colors.PrimaryBackGround, elevation: 0,
+        backgroundColor: Colors.PrimaryBackGround,
+        elevation: 0,
         shadowOpacity: 0,
         borderBottomWidth: 0,
+
     }
 
 }

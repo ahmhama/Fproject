@@ -24,6 +24,10 @@ import MissedVaccineScreen from '../screens/MissedVaccineScreen';
 import TakenVaccineScreen from '../screens/TakenVaccineScreen';
 import SelectChildScreen from '../screens/SelectChildScreen';
 import HomeScreen from '../screens/HomeScreen';
+import ChangePasswordScreen from '../screens/ChangePasswordScreen';
+import SignUpScreen from '../screens/SignUpScreen';
+import EventInfoScreen from '../screens/EventInfoScreen';
+import EnrolledEventsScreen from '../screens/EnrolledEventsScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -155,8 +159,27 @@ const StackNavigate = () => {
                     headerTitleAlign: 'center',
                 }} />
 
+            <Stack.Screen name="ChangePassword"
+                component={ChangePasswordScreen}
+                options={{
+                    headerTitle: () => <Text style={{ fontSize: 20, color: Colors.TextHeaderBlack }}>Change Password</Text>,
+                    headerTitleAlign: 'center',
+                }} />
 
 
+            <Stack.Screen name="EventInfo"
+                component={EventInfoScreen}
+                options={{
+                    headerTitle: () => <Text style={{ fontSize: 20, color: Colors.TextHeaderBlack }}>Event Info</Text>,
+                    headerTitleAlign: 'center',
+                }} />
+
+            <Stack.Screen name="EnrolledEvents"
+                component={EnrolledEventsScreen}
+                options={{
+                    headerTitle: () => <Text style={{ fontSize: 20, color: Colors.TextHeaderBlack }}>Enrolled Events</Text>,
+                    headerTitleAlign: 'center',
+                }} />
         </Stack.Navigator>
     );
 }
@@ -169,6 +192,13 @@ const StackAuth = () => {
                 component={LoginScreen}
                 options={{
                     headerShown: false
+                }}
+            />
+            <Stack.Screen name="SignUp"
+                component={SignUpScreen}
+                options={{
+                    header: () => null,
+                    headerTitle: () => null,
                 }}
             />
 

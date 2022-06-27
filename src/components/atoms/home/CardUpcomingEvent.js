@@ -4,24 +4,15 @@ import AgeGroup from './AgeGroup';
 import TitleCard from './TitleCard';
 import TopCardSlice from './TopCardSlice';
 
-const CardUpcomingEvent = ({ typeEvent, titleEvent, eventDuration, switchInfo }) => {
+const CardUpcomingEvent = ({ titleEvent, eventDuration, switchInfo }) => {
 
     return (
         <TouchableOpacity style={styles.card_container} onPress={switchInfo}>
-
-            <TopCardSlice
-                typeEvent={typeEvent.toLowerCase()}
-                eventDuration={eventDuration === 0 ? `today` : `in ${eventDuration} day`}
-            />
-
             <TitleCard title={titleEvent} />
 
-            {/* <AgeGroup
-                name="baby-face-outline"
-                color={typeEvent === 'must' ? "#FF2323" : "#8F9BB1"}
-                ageGroup={ageGroup}
-            /> */}
-
+            <TopCardSlice
+                eventDuration={eventDuration === 0 ? `today` : `in ${eventDuration} days`}
+            />
 
         </TouchableOpacity>
     )
@@ -29,8 +20,9 @@ const CardUpcomingEvent = ({ typeEvent, titleEvent, eventDuration, switchInfo })
 
 const styles = StyleSheet.create({
     card_container: {
-        width: Dimensions.get('screen').width * 0.65,
+        width: Dimensions.get('screen').width * 0.55,
         padding: 20,
+        paddingVertical: 30,
         marginLeft: 2,
         marginVertical: 10,
         marginRight: 17,
@@ -42,6 +34,9 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.18,
         shadowRadius: 1.00,
         elevation: 3,
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+        alignItems: 'center',
 
 
     }

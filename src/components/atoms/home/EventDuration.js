@@ -18,7 +18,12 @@ const styles = StyleSheet.create({
     date_top_card: {
         marginLeft: 3,
         fontSize: 14,
-        color: '#010A1C'
+        color: '#F8F8F8',
+        backgroundColor:'#FF0000',
+        paddingVertical:2 ,
+        paddingHorizontal:8,
+        borderRadius:10,
+
     }
 })
 

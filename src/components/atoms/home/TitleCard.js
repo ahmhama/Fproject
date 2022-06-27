@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native'
 
 const TitleCard = ({ title }) => {
     return (
-        <View style={{ paddingTop: 17 }}>
+        <View>
             <Text style={styles.title_text}>{title.length > 5 ? `${title.substring(0, 20)}` : title}</Text>
         </View>
     )

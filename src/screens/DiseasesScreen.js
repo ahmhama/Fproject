@@ -10,49 +10,29 @@ const DiseasesScreen = ({ navigation }) => {
 
   const dispatch = useDispatch();
   const reportsData = useSelector(state => state.reports.reports)
-  const child = useSelector(state => state.upcomingVaccines.upcomingVaccine)
+  const data = useSelector(state => state.upcomingVaccines.upcomingVaccine)
 
   useEffect(() => {
-    dispatch(getReportSlice())
-    dispatch(getDiseasesSlice())
+    dispatch(getReportSlice(data.childId))
   }, [dispatch])
-
 
   return (
     <ScrollView style={styles.container_screen}>
-      {
-        reportsData && child ? reportsData.map(item => {
-          if (item.childId === child.childId && item.status === true) {
-            return (
-              <DiseasesCard
-                key={item.diseasesId}
-                name={item.diseases.name}
-                discription={item.diseases.discription}
-                switchInfo={() => navigation.navigate("Information", {
-                  title: item.diseases.name,
-                  discription: item.diseases.discription,
-                  doctorName: item.doctor.firstName + " " + item.doctor.lastName,
-                  date: item.date,
-
-                  // vaccineName: item.vaccineName,
-                  // sideEffect: item.sideEffect
-                })}
-              />
-            )
-          }
-        }) : null
-
+  
+      {reportsData && reportsData.map((item, index) => {
+        return <DiseasesCard {...item} key={index} switchInfo={() => navigation.navigate("Information", {
+          title: item.diseaseName,
+          discription: item.discription,
+          doctorName: item.doctorName,
+          date: item.date,
+          healthoffice: item.healthofficeName
+        })} />
+      })
       }
 
-      {/* {data && data.map((item) => <DiseasesCard
-        key={item.diseaseId}
-        {...item}
-        switchInfo={() => navigation.navigate("Information", {
-          title: item.name,
-          discription: item.discription,
-          vaccineName: item.vaccineName,
-          sideEffect: item.sideEffect
-        })} />)} */}
+
+
+
 
     </ScrollView>
   )

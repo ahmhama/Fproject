@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { FlatList, StyleSheet, View } from 'react-native'
+import { ScrollView, StyleSheet, View } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import CardReport from '../components/atoms/reports/CardReport'
 import Colors from '../constants/color/Colors'
@@ -12,23 +12,26 @@ const ReportsScreen = ({ navigation }) => {
   const data = useSelector(state => state.upcomingVaccines.upcomingVaccine)
 
   useEffect(() => {
-    dispatch(getReportSlice())
+    dispatch(getReportSlice(data.childId))
   }, [dispatch])
 
+  console.log(reportsData);
   return (
     <View style={styles.screen}>
-      {reportsData && <FlatList
-        data={reportsData}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item }) => data.childId == item.childId ? <CardReport {...item} switchTo={() => navigation.navigate('DetailsReports', {
-          childId: item.childId,
-          date: item.date,
-          checkResultDescription: item.checkResultDescription,
-          height: item.height,
-          weight: item.weight
-        })} /> : null}
-      />}
+      <ScrollView>
+        {
 
+          reportsData && reportsData.map((item, index) => {
+            return <CardReport {...item} key={index} switchTo={() => navigation.navigate('DetailsReports', {
+              childId: item.childId,
+              date: item.date,
+              checkResultDescription: item.checkResultDescription,
+              height: item.height,
+              weight: item.weight
+            })} />
+          })}
+
+      </ScrollView>
 
     </View>
   )

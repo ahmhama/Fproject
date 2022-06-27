@@ -2,7 +2,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import Colors from '../constants/color/Colors'
 
-import { Image, SafeAreaView, StyleSheet, Text, View } from 'react-native'
+import { Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux';
 import { setSignIn } from '../stores/authSlice';
 
@@ -12,16 +12,18 @@ import ErrorInput from '../components/atoms/login/ErrorInput';
 import BtnLogin from '../components/atoms/login/BtnLogin';
 
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }) => {
   const { isLoggedIn, email, password } = useSelector(state => state.userAuth);
+  const { error } = useSelector(state => state.userAuth);
+  console.log(error);
   const dispatch = useDispatch();
 
   const SignInSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Required'),
-    password: Yup.string()
-      .required('Required')
-      .min(8, 'Password is too short - should be 8 chars minimum.')
-      .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.')
+    // password: Yup.string()
+    //   .required('Required')
+    //   .min(8, 'Password is too short - should be 8 chars minimum.')
+    //   .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.')
   });
 
   return (
@@ -39,7 +41,7 @@ const LoginScreen = () => {
 
           }}>
             <View>
-              <Text style={{ fontSize: 40, color: Colors.PrimaryText }}>Welcome {'\n'}Back </Text>
+              <Text style={{ fontSize: 40, color: Colors.PrimaryText }}>Kids {'\n'}Health Care </Text>
             </View>
             <View>
               <Image source={require('../assets/images/logo.png')} style={{ width: 95, height: 100 }} />
@@ -87,6 +89,8 @@ const LoginScreen = () => {
                   {errors.password && touched.password ? <ErrorInput>{errors.password}</ErrorInput> : null}
                 </View>
 
+                {error && error ? <ErrorInput>{error}</ErrorInput> : null}
+
                 <BtnLogin
                   onHandleBtn={handleSubmit}
                   values={values}
@@ -95,6 +99,13 @@ const LoginScreen = () => {
               </View>
             )}
           </Formik>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('SignUp')
+            }}
+          >
+            <Text style={{ color: Colors.PrimaryText, fontSize: 15 }}>Sign Up</Text>
+          </TouchableOpacity>
         </View>
       </DismissKey>
     </SafeAreaView >

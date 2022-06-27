@@ -10,9 +10,9 @@ const Card = ({ vaccineName, date, type }) => {
 
         <View style={styles.container_card}>
             <View style={styles.top_card}>
-                <TypeVaccine typeVaccine={type} />
-
-                <IconCard icon={<MaterialIcons name="access-time" size={24} color={type.toLowerCase() !== "must" ? "#8F9BB1" : "#FF2323"} />} text_icon={date} />
+                {/* <TypeVaccine typeVaccine={type} /> */}
+                {/* color={type.toLowerCase() !== "must" ? "#8F9BB1" : "#FF2323"} */}
+                <IconCard icon={<MaterialIcons name="access-time" size={24} color="#8F9BB1" />} text_icon={date} />
             </View>
 
             <TitleCard title={vaccineName} />

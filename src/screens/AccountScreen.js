@@ -13,6 +13,7 @@ import { SimpleLineIcons, Feather, MaterialCommunityIcons } from '@expo/vector-i
 import { useDispatch, useSelector } from 'react-redux'
 import { getAccountSlice, getChildIndex } from '../stores/accountSlice';
 import { getUpcomingVaccinesSlice } from '../stores/upcomingVaccinesSlice';
+import { setSignIn } from '../stores/authSlice';
 
 
 const AccountScreen = ({ navigation }) => {
@@ -20,9 +21,10 @@ const AccountScreen = ({ navigation }) => {
     const dispatch = useDispatch();
 
     const accountChildren = useSelector(state => state.account.account)
+    const userId = useSelector(state => state.userAuth.userId)
 
     useEffect(() => {
-        dispatch(getAccountSlice())
+        dispatch(getAccountSlice(userId))
     }, [dispatch])
 
 
@@ -51,7 +53,7 @@ const AccountScreen = ({ navigation }) => {
                                     onPress={() => {
                                         dispatch(getChildIndex(index))
                                         dispatch(getUpcomingVaccinesSlice(item.childId))
-                                        
+
                                         bottomSheet.current.close()
                                         navigation.navigate('HomeTap')
                                     }}
@@ -73,6 +75,12 @@ const AccountScreen = ({ navigation }) => {
                     title='Switch Child'
                     description='Select Your child'
                 />
+                <ListItem
+                    targetNavigate={() => navigation.navigate('ChangePassword')}
+                    icon={<MaterialCommunityIcons name="form-textbox-password" size={24} color={Colors.Icon} />}
+                    title='Change Password'
+                    description='Change your password'
+                />
 
                 {/* <ListItem
                     targetNavigate={() => navigation.navigate('Calendar')}
@@ -85,7 +93,7 @@ const AccountScreen = ({ navigation }) => {
                     icon={<MaterialCommunityIcons name="card-account-details-outline" size={24} color={Colors.Icon} />}
                     title='Child Info'
                     description='Check out your child info'
-                    
+
                 />
 
 
@@ -101,6 +109,8 @@ const AccountScreen = ({ navigation }) => {
                 <ListItem
                     icon={<SimpleLineIcons name="logout" size={24} color={Colors.Icon} />}
                     title='Log out'
+                    targetNavigate={() => dispatch(setSignIn({ isLoggedIn: false }))}
+
                 />
             </View >
 

@@ -4,12 +4,12 @@ import axios from 'axios';
 
 export const getUpcomingVaccinesSlice = createAsyncThunk('upcomingVaccines/getUpcomingVaccinesSlice', async (userId, thunkAPI) => {
 
-
     const res = await axios.get(`http://10.0.2.2:5000/Home/Children/Child/${userId}`,
         {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
+                'Authorization': `Bearer ${thunkAPI.getState().userAuth.token}`
             }
         });
 

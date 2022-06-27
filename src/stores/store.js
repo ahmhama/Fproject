@@ -7,7 +7,10 @@ import upcomingVaccinesSlice from './upcomingVaccinesSlice';
 import diseasesSlice from './diseasesSlice';
 import eventsSlice from './eventsSlice';
 import reportsSlice from './reportsSlice';
-
+import healthOfficeIdSlice from './healthOfficeIdSlice';
+import changePasswordSlice from './changePasswordSlice';
+import signupSlice from './signupSlice';
+import checkStatusSlice from './checkStatusSlice';
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -20,7 +23,11 @@ export default store = configureStore({
         upcomingVaccines: upcomingVaccinesSlice,
         diseases: diseasesSlice,
         events: eventsSlice,
-        reports: reportsSlice
+        reports: reportsSlice,
+        healthOffice: healthOfficeIdSlice,
+        changePassword: changePasswordSlice,
+        signup: signupSlice,
+        checkStatus: checkStatusSlice
 
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({

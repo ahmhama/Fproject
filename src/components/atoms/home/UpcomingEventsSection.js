@@ -57,7 +57,7 @@ const UpcomingVaccinesSection = ({ swichTo, navigation }) => {
 
     return (
         <View style={styles.upcoming_vaccines}>
-            <HeaderSection content="Campaigns" switchTo={swichTo} />
+            <HeaderSection content="Upcoming Campaigns" switchTo={swichTo} />
 
             {eventsData ? <FlatList
                 nestedScrollEnabled
@@ -68,13 +68,11 @@ const UpcomingVaccinesSection = ({ swichTo, navigation }) => {
                 data={eventsData}
 
                 renderItem={({ item }) => checkTheDate(item.endDate) && <CardUpcomingEvent
-                    switchInfo={() => navigation.navigate("Information", {
+                    switchInfo={() => navigation.navigate("EventInfo", {
                         title: item.vaccineCampingName,
-                        image: item.image,
-                        description: item.description
+                        description: item.vaccineCampingDescription
                     })}
                     eventDuration={getDifferenceBetweenDates(item.startDate, item.endDate)}
-                    typeEvent={item.type}
                     titleEvent={item.vaccineCampingName}
 
                 />

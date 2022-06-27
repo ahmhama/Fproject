@@ -3,17 +3,16 @@ import React, { useEffect } from 'react'
 import Colors from '../constants/color/Colors'
 import { useDispatch, useSelector } from 'react-redux'
 import moment from 'moment'
-import { getGlobalTime } from '../stores/timeGlobalSlice'
+import { getCheckStatusSlice } from '../stores/checkStatusSlice'
 
 const ChildInfoScreen = () => {
     const data = useSelector(state => state.upcomingVaccines.upcomingVaccine)
-    const globalTime = useSelector(state => state.globalTime.time)
+    const checkStatus = useSelector(state => state.checkStatus.checkStatus)
     const dispatch = useDispatch()
 
 
-
     useEffect(() => {
-        dispatch(getGlobalTime())
+        dispatch(getCheckStatusSlice(data.childId))
     }, [dispatch])
 
 
@@ -30,12 +29,7 @@ const ChildInfoScreen = () => {
     return (
         data ? <View style={styles.container_screen} >
 
-            {/* {globalTime ?
-                                getAge(data.childBirthDate, globalTime.datetime, 'days') > 360 ? getAge(data.childBirthDate, globalTime.datetime, 'Years') + "Y" + " " + (getAge(data.childBirthDate, globalTime.datetime, 'Months') - (getAge(data.childBirthDate, globalTime.datetime, 'Years') * 12)) + "M"
-                                    : getAge(data.childBirthDate, globalTime.datetime, 'days') < 360 ? getAge(data.childBirthDate, globalTime.datetime, 'Months') + " M" + " " + (getAge(data.childBirthDate, globalTime.datetime, 'Days') - (getAge(data.childBirthDate, globalTime.datetime, 'Months') * 30)) + "D"
-                                        : getAge(data.childBirthDate, globalTime.datetime, 'days') + " D"
-                                : null
-                            } */}
+    
 
             <View style={styles.container_carve}>
                 <View style={styles.container_child_info}>
@@ -64,6 +58,10 @@ const ChildInfoScreen = () => {
                     <View style={styles.item_row}>
                         <Text style={styles.item_header}>Weight</Text>
                         <Text style={styles.item_text}> {data.weight}</Text>
+                    </View>
+                    <View style={styles.item_row}>
+                        <Text style={styles.item_header}>status</Text>
+                        <Text style={styles.item_text}> {checkStatus.status}</Text>
                     </View>
 
                 </View>

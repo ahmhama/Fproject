@@ -10,8 +10,10 @@ const SelectChildScreen = ({ navigation }) => {
     const dispatch = useDispatch();
 
     const accountChildren = useSelector(state => state.account.account)
+    const userId = useSelector(state => state.userAuth.userId)
+
     useEffect(() => {
-        dispatch(getAccountSlice())
+        dispatch(getAccountSlice(userId))
     }, [dispatch])
 
     return (

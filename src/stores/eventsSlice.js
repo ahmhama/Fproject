@@ -3,11 +3,13 @@ import axios from 'axios';
 
 
 export const getEventsSlice = createAsyncThunk('events/getEventsSlice', async (_, thunkAPI) => {
-    const res = await axios.get('http://10.0.2.2:5000/Home/Events/All',
+    const res = await axios.get('http://10.0.2.2:5000/Home/VaccineCamping/All',
         {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
+                'Authorization': `Bearer ${thunkAPI.getState().userAuth.token}` 
+
             }
         });
 

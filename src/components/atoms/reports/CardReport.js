@@ -5,11 +5,11 @@ import IconCard from '../common/IconCard'
 import { MaterialIcons } from '@expo/vector-icons';
 
 
-const CardReport = ({ doctor, date, switchTo }) => {
+const CardReport = ({ doctorName, date, switchTo }) => {
     return (
 
         <TouchableOpacity style={styles.container_card} onPress={switchTo}>
-            <TitleCard title={doctor.firstName + " " + doctor.lastName} dr="Dr" />
+            <TitleCard title={doctorName} dr="Dr" />
             <IconCard icon={<MaterialIcons name="access-time" size={24} />} text_icon={date} />
         </TouchableOpacity >
     )
