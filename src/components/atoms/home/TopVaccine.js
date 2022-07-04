@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from 'react-native'
 import AgeGroup from './AgeGroup'
 
 const TopVaccine = ({ typeVaccine, ageGroup, vaccineAge }) => {
+    console.log(vaccineAge * 30 ,ageGroup);
     return (
         <View style={styles.top_card}>
             <View style={typeVaccine.toLowerCase() === 'must' ? styles.left_top_card : { ...styles.left_top_card, backgroundColor: '#8F9BB1' }}>

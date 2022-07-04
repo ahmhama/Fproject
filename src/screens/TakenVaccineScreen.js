@@ -1,4 +1,4 @@
-import { StyleSheet, FlatList, View } from 'react-native'
+import { StyleSheet, FlatList, View, ScrollView } from 'react-native'
 import React from 'react'
 import Card from '../components/atoms/data/Card';
 
@@ -7,15 +7,17 @@ const TakenVaccineScreen = ({ route, navigation }) => {
 
     return (
         <View style={styles.screen}>
-            {
-                VaccineTaken && VaccineTaken.map((vaccine) => {
-                    return (
-                        <Card key={vaccine.vaccineId} {...vaccine} />
+            <ScrollView showsVerticalScrollIndicator={false}>
+                {
+                    VaccineTaken && VaccineTaken.map((vaccine) => {
+                        return (
+                            <Card key={vaccine.vaccineId} {...vaccine} />
+                        )
+                    }
                     )
-                }
-                )
 
-            }
+                }
+            </ScrollView>
         </View>
     )
 }
